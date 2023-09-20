@@ -1,0 +1,8 @@
+
+.searchbar form {
+  display:flex;
+  gap:2rem;
+  background-color: red;
+}
+
+
