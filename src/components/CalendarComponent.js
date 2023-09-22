@@ -7,7 +7,7 @@ import 'moment/locale/en-gb';
 
 moment.locale('en-gb');
 
-const DateRangePickerExample = () => {
+const  DatePicker = () => {
   const [dateRange, setDateRange] = useState({
     startDate: null,
     endDate: null,
@@ -44,4 +44,4 @@ const DateRangePickerExample = () => {
   );
 };
 
-export default DateRangePickerExample;
+export default  DatePicker;

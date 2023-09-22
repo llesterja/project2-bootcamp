@@ -4,7 +4,7 @@ import SearchBar from './SearchBar';
 
 const SearchBarWrapper = () => {
   return (
-    <div className="">
+    <div className="search-wrapper">
       <SearchBar />
     </div>
   );
