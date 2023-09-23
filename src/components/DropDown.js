@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   FormControl,
   InputLabel,
   Select,
   MenuItem,
-  TextField,
   Button,
 } from '@material-ui/core';
 
@@ -92,7 +91,7 @@ function NestedForm() {
             />
             <button
               onClick={() => {
-                decreaseCounter(childCounterValue, setChildCounterValue);
+                decreaseCounter(adultCounterValue, setAdultCounterValue);
               }}
             >
               {' '}
