@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FormControl,
   InputLabel,
@@ -6,7 +6,7 @@ import {
   MenuItem,
   Button,
 } from '@material-ui/core';
-
+// todo  refactor onClicks for counters to reduce repeat e.preventDefault()
 import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 
 const theme = createTheme({
@@ -32,7 +32,12 @@ function NestedForm() {
   const [adultCounterValue, setAdultCounterValue] = useState(0);
   const [childCounterValue, setChildCounterValue] = useState(0);
 
+  useEffect(() => {
+    console.log(selectedOption);
+  }, [selectedOption]);
+
   const handleOptionChange = (event) => {
+    console.log(event);
     setSelectedOption(event.target.value);
   };
 
@@ -77,7 +82,8 @@ function NestedForm() {
           </div>
           <div className="counter-wrapper">
             <button
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 increaseCounter(adultCounterValue, setAdultCounterValue);
               }}
             >
@@ -90,7 +96,8 @@ function NestedForm() {
               aria-label="number input"
             />
             <button
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 decreaseCounter(adultCounterValue, setAdultCounterValue);
               }}
             >
@@ -107,7 +114,8 @@ function NestedForm() {
           </div>
           <div className="counter-wrapper">
             <button
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 increaseCounter(childCounterValue, setChildCounterValue);
               }}
             >
@@ -120,7 +128,8 @@ function NestedForm() {
               aria-label="number input"
             />
             <button
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 decreaseCounter(childCounterValue, setChildCounterValue);
               }}
             >

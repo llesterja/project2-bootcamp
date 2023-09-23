@@ -1,49 +1,42 @@
-import React, { useState, useEffect, forwardRef } from 'react';
+import React from 'react';
 import DatePicker from './CalendarComponent';
 import '../CSS/App.css';
-import MyForm from './DropDown';
+import ModelContainer from './ModelContainer';
+import { Button } from '@material-ui/core';
 
 const SearchBar = () => {
-  const [isTravelModelOpen, setIsTravelModelOpen] = useState('');
-
-  const handleTravelToggle = (event) => {
-    event.preventDefault();
-    setIsTravelModelOpen(!isTravelModelOpen);
-  };
-
   return (
     <div className="searchbar">
       <form>
-        <label>From</label>
-        <input
-          name="departure"
-          id="departure"
-          placeholder="Country, City or Airport"
-        />
-        <label>To</label>
-        <input
-          name="arrival"
-          id="arrival"
-          placeholder="Country, City or Airport"
-        />
-        <DatePicker className="calendar-input" />
-        <div className="toggle-menu">
-          <button onClick={handleTravelToggle}>
-            <span className="placeholder-text">
-              {' '}
-              Travellers and cabin Class
-            </span>
-            <span className="option text"> 1 Adult, First Class</span>
-          </button>
-          {isTravelModelOpen && <MyForm className="passenger-type-accordian" />}
+        <div className="origin">
+          <label>From</label>
+          <input
+            name="departure"
+            className="departure-arrival"
+            id="departure"
+            placeholder="Country, City or Airport"
+          />
         </div>
+        <div className="destination">
+          <label>To</label>
+          <input
+            className="departure-arrival"
+            name="arrival"
+            id="arrival"
+            placeholder="Country, City or Airport"
+          />
+        </div>
+        <DatePicker className="calendar-input" />
 
-        <button className="" type="submit">
+        <ModelContainer />
+
+        <Button variant="contained" color="primary" type="submit">
           Search
-        </button>
-        <button className="" type="submit">
+        </Button>
+
+        <Button variant="contained" type="submit">
           Surprise Me
-        </button>
+        </Button>
       </form>
     </div>
   );
