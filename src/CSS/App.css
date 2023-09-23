@@ -6,6 +6,7 @@
 
 .searchbar form {
   display: flex;
+  align-items: stretch;
   gap: 0.25rem;
   margin: 1rem;
 }
@@ -14,6 +15,25 @@
   border-radius: 5px 0 0 5px;
 }
 
+.searchbar form input,
+.searchbar form button {
+  height: 3.4rem;
+}
+
+.origin,
+.destination {
+  display: flex;
+  flex-direction: column;
+}
+
+.origin label,
+.destination label {
+  position: absolute;
+  z-index: 1;
+  color: black;
+  font-weight: 300;
+  margin-left: 0.5rem;
+}
 .search-wrapper {
   background-color: #05203c;
   width: fit-content;
@@ -21,11 +41,12 @@
   padding: 2rem;
   color: white;
   font-weight: 500;
-  /* font-size: 1.5px; */
 }
 
 .DateInput_input {
   width: 84%;
+  height: 3.4rem; /* Adjust the height to match other elements */
+  padding: 0.5rem; /* Adjust the padding to maintain consistent appearance */
 }
 
 .accordian-container {
@@ -51,9 +72,14 @@
   display: block;
 }
 
+.departure-arrival {
+  padding: 11px 11px 9px 11px;
+}
+
 .toggle-menu button {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   padding: 1rem;
 }
 .label-text {
@@ -86,8 +112,8 @@
   padding: 0.5rem;
   font-size: 1rem;
   text-align: center;
-  box-sizing: border-box; /* Ensure the padding is included in the width calculation */
-  max-width: 2.5rem; /* Set a maximum width for the input field */
+  box-sizing: border-box;
+  max-width: 2.5rem;
 }
 
 .legal-disclaimer {
