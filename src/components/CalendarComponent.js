@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
@@ -7,11 +7,16 @@ import 'moment/locale/en-gb';
 
 moment.locale('en-gb');
 
-const  DatePicker = () => {
+const DatePicker = () => {
   const [dateRange, setDateRange] = useState({
     startDate: null,
     endDate: null,
   });
+
+  useEffect(() => {
+    console.log(dateRange);
+  }, [dateRange]);
+
   const [focusedInput, setFocusedInput] = useState(null);
 
   const handleDateRangeChange = ({ startDate, endDate }) => {
@@ -44,4 +49,4 @@ const  DatePicker = () => {
   );
 };
 
-export default  DatePicker;
+export default DatePicker;
