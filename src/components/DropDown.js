@@ -27,10 +27,17 @@ const theme = createTheme({
   },
 });
 
-function NestedForm() {
-  const [selectedOption, setSelectedOption] = useState('First Class');
-  const [adultCounterValue, setAdultCounterValue] = useState(0);
-  const [childCounterValue, setChildCounterValue] = useState(0);
+function NestedForm({
+  selectedOption,
+  setSelectedOption,
+  adultCounterValue,
+  setAdultCounterValue,
+  childCounterValue,
+  setChildCounterValue,
+}) {
+  useEffect(() => {
+    console.log(selectedOption);
+  }, [selectedOption]);
 
   useEffect(() => {
     console.log(selectedOption);
