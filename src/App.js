@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import DestinationCard from "./components/DestinationCard";
+import DestinationGallery from "./components/DestinationGallery"
 
 class App extends React.Component {
   render() {
@@ -9,7 +10,7 @@ class App extends React.Component {
         <header className="App-header">
           Component Testing
 
-            <DestinationCard/>
+            <DestinationGallery/>
 
         </header>
       </div>
