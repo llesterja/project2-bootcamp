@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import {
   FormControl,
   InputLabel,
@@ -15,29 +15,63 @@ const theme = createTheme({
 });
 
 function NestedForm() {
-  const [
-    passengerInfoState,
-    onOptionChange,
-    onAdultCounterChange,
-    onChildCounterChange,
-  ] = useContext(searchContext);
-
-  const increaseCounter = (setCounter, event) => {
+  const [passengerInfoState, setPassengerInfoState] = useContext(searchContext);
+  // const [passengerInfoState, setPassengerInfoState] = useState({
+  //   selectedOption: '',
+  // });
+  useEffect(() => {
+    console.log(passengerInfoState.selectedOption);
+  }, [passengerInfoState]);
+  const updateSelectedOption = (event) => {
+    const newOption = event.target.value;
+    console.log(newOption);
+    setPassengerInfoState((prevState) => ({
+      ...prevState,
+      selectedOption: newOption,
+    }));
+  };
+  const increaseAdultCounter = (event) => {
     event.preventDefault();
-    setCounter((prevCount) => prevCount + 1);
+    setPassengerInfoState((prevState) => {
+      const newCounterValue = Math.min(prevState.adultCounterValue + 1, 8); // Limit to a maximum of 8
+      return {
+        ...prevState,
+        adultCounterValue: newCounterValue,
+      };
+    });
   };
 
-  const decreaseCounter = (setCounter, event) => {
+  const decreaseAdultCounter = (event) => {
     event.preventDefault();
-    setCounter((prevCount) => (prevCount === 0 ? 0 : prevCount - 1));
+    setPassengerInfoState((prevState) => {
+      const newCounterValue = Math.max(prevState.adultCounterValue - 1, 0);
+      return {
+        ...prevState,
+        adultCounterValue: newCounterValue,
+      };
+    });
   };
 
-  const handleSubmit = (event) => {
+  const increaseChildCounter = (event) => {
     event.preventDefault();
+    setPassengerInfoState((prevState) => {
+      const newCounterValue = Math.min(prevState.childCounterValue + 1, 8);
+      return {
+        ...prevState,
+        childCounterValue: newCounterValue,
+      };
+    });
   };
 
-  const handleOptionChange = (event) => {
-    onOptionChange(event.target.value);
+  const decreaseChildCounter = (event) => {
+    event.preventDefault();
+    setPassengerInfoState((prevState) => {
+      const newCounterValue = Math.max(prevState.childCounterValue - 1, 0);
+      return {
+        ...prevState,
+        childCounterValue: newCounterValue,
+      };
+    });
   };
 
   return (
@@ -47,7 +81,7 @@ function NestedForm() {
         <Select
           value={passengerInfoState.selectedOption}
           className="Select"
-          onChange={handleOptionChange}
+          onChange={updateSelectedOption}
         >
           <MenuItem value="First Class">First Class</MenuItem>
           <MenuItem value="Business Class">Business Class</MenuItem>
@@ -61,21 +95,13 @@ function NestedForm() {
             <span>Aged 16+</span>
           </div>
           <div className="counter-wrapper">
-            <button
-              onClick={(event) => increaseCounter(onAdultCounterChange, event)}
-            >
-              &#8593;
-            </button>
+            <button onClick={increaseAdultCounter}>&#8593;</button>
             <input
               type="text"
               value={passengerInfoState.adultCounterValue}
               aria-label="number input"
             />
-            <button
-              onClick={(event) => decreaseCounter(onAdultCounterChange, event)}
-            >
-              &#8595;
-            </button>
+            <button onClick={decreaseAdultCounter}>&#8595;</button>
           </div>
         </div>
 
@@ -85,21 +111,13 @@ function NestedForm() {
             <span>Aged 0 to 15</span>
           </div>
           <div className="counter-wrapper">
-            <button
-              onClick={(event) => increaseCounter(onChildCounterChange, event)}
-            >
-              &#8593;
-            </button>
+            <button onClick={increaseChildCounter}>&#8593;</button>
             <input
               type="text"
               value={passengerInfoState.childCounterValue}
               aria-label="number input"
             />
-            <button
-              onClick={(event) => decreaseCounter(onChildCounterChange, event)}
-            >
-              &#8595;
-            </button>
+            <button onClick={decreaseChildCounter}>&#8595;</button>
           </div>
         </div>
 
@@ -120,7 +138,7 @@ function NestedForm() {
             variant="contained"
             color="primary"
             className="accordion-search"
-            onClick={handleSubmit}
+            // onClick={handleSubmit}
           >
             Search
           </Button>
