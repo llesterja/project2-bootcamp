@@ -18,43 +18,9 @@ const SearchBar = () => {
     endDate: null,
   });
 
-  // Update selected option
-  const handleOptionChange = useCallback((option) => {
-    setPassengerInfoState((prevState) => ({
-      ...prevState,
-      selectedOption: option,
-    }));
-  }, []);
-
-  // Update adult counter value
-  const handleAdultCounterChange = useCallback((value) => {
-    setPassengerInfoState((prevState) => ({
-      ...prevState,
-      adultCounterValue: value,
-    }));
-  }, []);
-
-  // Update child counter value
-  const handleChildCounterChange = useCallback((value) => {
-    setPassengerInfoState((prevState) => ({
-      ...prevState,
-      childCounterValue: value,
-    }));
-  }, []);
-
   const memoizedSearchArray = useMemo(
-    () => [
-      passengerInfoState,
-      handleOptionChange,
-      handleAdultCounterChange,
-      handleChildCounterChange,
-    ],
-    [
-      passengerInfoState,
-      handleOptionChange,
-      handleAdultCounterChange,
-      handleChildCounterChange,
-    ]
+    () => [passengerInfoState, setPassengerInfoState],
+    [passengerInfoState, setPassengerInfoState]
   );
 
   return (
