@@ -45,6 +45,12 @@
   font-weight: 500;
 }
 
+.DateInput_input {
+  width: 84%;
+  height: 3.4rem; /* Adjust the height to match other elements */
+  padding: 0.5rem; /* Adjust the padding to maintain consistent appearance */
+}
+
 .accordian-container {
   position: absolute;
   top: 16%;
@@ -68,17 +74,16 @@
   display: block;
 }
 
+.departure-arrival {
+  padding: 11px 11px 9px 11px;
+}
+
 .toggle-menu button {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 1rem;
 }
-.toggle-menu,
-.passenger-toggle-button {
-  min-width: 12.875rem;
-}
-
 .label-text {
   display: flex;
   flex-direction: column;
