@@ -46,7 +46,6 @@
 }
 
 .DateInput_input {
-  width: 84%;
   height: 3.4rem; /* Adjust the height to match other elements */
   padding: 0.5rem; /* Adjust the padding to maintain consistent appearance */
 }
@@ -76,6 +75,11 @@
 
 .departure-arrival {
   padding: 11px 11px 9px 11px;
+}
+
+.toggle-menu,
+.toggle-menu:first-child {
+  min-width: 13rem;
 }
 
 .toggle-menu button {

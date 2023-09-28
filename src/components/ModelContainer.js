@@ -1,11 +1,11 @@
 // ModelContainer.js
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useState, useContext } from 'react';
 import withClickOutside from './withClickOutside';
 import NestedForm from './DropDown';
+import searchContext from '../utils/SearchContext';
 
 const ModelContainer = forwardRef(({ open, setOpen }, ref) => {
-  const [adultCounterValue, setAdultCounterValue] = useState(0);
-  const [childCounterValue, setChildCounterValue] = useState(0);
+  const [passengerInfoState] = useContext(searchContext);
 
   return (
     <section ref={ref}>
@@ -18,19 +18,11 @@ const ModelContainer = forwardRef(({ open, setOpen }, ref) => {
         >
           <span className="placeholder-text"> Travellers and cabin Class</span>
           <span className="option text">
-            {adultCounterValue} Adult, First Class
+            {passengerInfoState.adultCounterValue} Adult,{' '}
+            {passengerInfoState.selectedOption}
           </span>
         </button>
-        {open && (
-          <NestedForm
-            className="passenger-type-accordian"
-            // Pass the handler function
-            adultCounterValue={adultCounterValue}
-            setAdultCounterValue={setAdultCounterValue}
-            childCounterValue={childCounterValue}
-            setChildCounterValue={setChildCounterValue}
-          />
-        )}
+        {open && <NestedForm className="passenger-type-accordian" />}
       </div>
     </section>
   );
