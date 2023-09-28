@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import {
   FormControl,
   InputLabel,
@@ -7,7 +7,6 @@ import {
   Button,
 } from '@material-ui/core';
 import searchContext from '../utils/SearchContext';
-// todo  refactor onClicks for counters to reduce repeat e.preventDefault()
 import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 
 const theme = createTheme({
@@ -30,10 +29,6 @@ const theme = createTheme({
 
 function NestedForm() {
   const [passengerInfoState, setPassengerInfoState] = useContext(searchContext);
-
-  useEffect(() => {
-    console.log(passengerInfoState.selectedOption);
-  }, [passengerInfoState]);
 
   const updateSelectedOption = (event) => {
     const newOption = event.target.value;
