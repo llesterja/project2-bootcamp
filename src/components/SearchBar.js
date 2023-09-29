@@ -6,7 +6,6 @@ import { Button } from '@material-ui/core';
 import searchContext from '../utils/SearchContext';
 import dateRangeContext from '../utils/dateRangeContext';
 import getData from '../utils/UseApi';
-import axios from 'axios';
 
 const SearchBar = () => {
   const [passengerInfoState, setPassengerInfoState] = useState({
@@ -16,6 +15,7 @@ const SearchBar = () => {
 
     childCounterValue: 0,
   });
+  const [token, setToken] = useState('');
 
   const [dateRange, setDateRange] = useState({
     startDate: null,
@@ -23,38 +23,10 @@ const SearchBar = () => {
     endDate: null,
   });
 
-  // useEffect(() => {
-  //   let data = getData();
-  //   data
-  //     .then((result) => {
-  //       const { data } = result;
-  //       const { access_token } = data;
-  //       const flightOfferApi =
-  //         'https://test.api.amadeus.com/v1/shopping/flight-offers';
-
-  //       const response = axios.get(flightOfferApi, {
-  //         params: {
-  //           currencyCode: 'USD',
-  //           originLocationCode: 'NYC', // Replace with your departure airport code
-  //           destinationLocationCode: 'LAX', // Replace with your destination airport code
-  //           departureDate: dateRange.startDate,
-  //           returnDate: dateRange.endDate,
-  //           adults: passengerInfoState.adultCounterValue,
-  //           children: passengerInfoState.childCounterValue,
-  //           travelClass: passengerInfoState.selectedOption,
-  //           nonStop: true,
-  //           max: 50,
-  //           includeAirlines: 'DL,AA,UA', // Replace with the airlines you prefer
-  //         },
-  //         headers: {
-  //           Authorization: `Berear ${access_token}`,
-  //         },
-  //       });
-  //     })
-  //     .then((flightData) => {
-  //       console.log(flightData);
-  //     });
-  // });
+  useEffect(() => {
+    let data = getData();
+    console.log(data);
+  }, []);
 
   const memoizedSearchArray = useMemo(
     () => [passengerInfoState, setPassengerInfoState],
