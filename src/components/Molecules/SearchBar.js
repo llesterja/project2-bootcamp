@@ -1,11 +1,11 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import DatePicker from './CalendarComponent';
-import '../CSS/App.css';
-import ModelContainer from './ModelContainer';
+import React, { useState, useMemo } from 'react';
+import DatePicker from '../CalendarComponent';
+import '../../CSS/App.css';
+import '../../CSS/SearchBar.css';
+import ModelContainer from '../Organisms/ModelContainer';
 import { Button } from '@material-ui/core';
-import searchContext from '../utils/SearchContext';
-import dateRangeContext from '../utils/dateRangeContext';
-import getData from '../utils/UseApi';
+import searchContext from '../../utils/SearchContext';
+import dateRangeContext from '../../utils/dateRangeContext';
 
 const SearchBar = () => {
   const [passengerInfoState, setPassengerInfoState] = useState({
@@ -15,18 +15,12 @@ const SearchBar = () => {
 
     childCounterValue: 0,
   });
-  const [token, setToken] = useState('');
 
   const [dateRange, setDateRange] = useState({
     startDate: null,
 
     endDate: null,
   });
-
-  useEffect(() => {
-    let data = getData();
-    console.log(data);
-  }, []);
 
   const memoizedSearchArray = useMemo(
     () => [passengerInfoState, setPassengerInfoState],
@@ -36,6 +30,9 @@ const SearchBar = () => {
 
   return (
     <div className="searchbar">
+      <h1 className="searchbar-heading">
+        Millions of cheap flights, at your finger tips
+      </h1>
       <searchContext.Provider value={memoizedSearchArray}>
         <form>
           <div className="origin">

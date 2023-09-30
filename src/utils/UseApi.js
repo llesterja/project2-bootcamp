@@ -17,18 +17,18 @@ const getData = async () => {
   const originLocationCode = 'SYD';
   const destinationLocationCode = 'BKK';
   const departureDate = '2023-10-02';
+  const returnDate = '2023-10-15';
   const adults = 2;
+  const currencyCode = 'GBP';
 
   const flightData = await axios.get(
-    `https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=${originLocationCode}&destinationLocationCode=${destinationLocationCode}&departureDate=${departureDate}&adults=${adults}&travelClass=PREMIUM_ECONOMY&nonStop=false&max=250`,
+    `https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=${originLocationCode}&destinationLocationCode=${destinationLocationCode}&departureDate=${departureDate}&returnDate=${returnDate}&adults=${adults}&travelClass=PREMIUM_ECONOMY&nonStop=false&max=250&currencyCode=${currencyCode}`,
     {
       headers: {
         Authorization: `Bearer ${tokenData.access_token}`,
       },
     }
   );
-
-  console.log(flightData.data);
 
   return flightData;
 };

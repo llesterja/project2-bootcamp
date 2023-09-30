@@ -1,8 +1,8 @@
 // ModelContainer.js
-import React, { forwardRef, useState, useContext } from 'react';
-import withClickOutside from './withClickOutside';
-import NestedForm from './DropDown';
-import searchContext from '../utils/SearchContext';
+import React, { forwardRef, useContext } from 'react';
+import withClickOutside from '../withClickOutside';
+import NestedForm from '../Molecules/DropDown';
+import searchContext from '../../utils/SearchContext';
 
 const ModelContainer = forwardRef(({ open, setOpen }, ref) => {
   const [passengerInfoState] = useContext(searchContext);

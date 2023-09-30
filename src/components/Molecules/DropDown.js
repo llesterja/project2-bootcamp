@@ -6,7 +6,7 @@ import {
   MenuItem,
   Button,
 } from '@material-ui/core';
-import searchContext from '../utils/SearchContext';
+import searchContext from '../../utils/SearchContext';
 import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 
 const theme = createTheme({

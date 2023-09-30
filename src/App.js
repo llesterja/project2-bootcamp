@@ -1,15 +1,33 @@
-import React from "react";
-import SearchBarWrapper from "./components/SearchBarWrapper";
-import "./CSS/App.css";
+import React, { useState, useEffect } from 'react';
+import SearchBarWrapper from './components/Organisms/SearchBarWrapper';
+import './CSS/App.css';
+import getData from './utils/UseApi';
+import FlightTable from './components/FlightsTable';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div className="App">
+const App = () => {
+  const [flights, setFlights] = useState([]);
+  const [dictionaries, setDictionaries] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const rawData = await getData();
+      const { data } = rawData;
+      const { dictionaries } = data;
+
+      setFlights(data.data);
+      setDictionaries(dictionaries);
+    };
+
+    fetchData();
+  }, []);
+  return (
+    <div className="App">
       <SearchBarWrapper />
-      </div>
-    );
-  }
-}
+      {flights.length > 0 && (
+        <FlightTable flights={flights} dictionaries={dictionaries} />
+      )}
+    </div>
+  );
+};
 
 export default App;
