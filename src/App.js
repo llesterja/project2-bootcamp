@@ -3,6 +3,7 @@ import SearchBarWrapper from './components/Organisms/SearchBarWrapper';
 import './CSS/App.css';
 import getData from './utils/UseApi';
 import FlightTable from './components/FlightsTable';
+import FlightOfferCard from './components/Molecules/FlightOfferCard';
 
 const App = () => {
   const [flights, setFlights] = useState([]);
@@ -23,9 +24,10 @@ const App = () => {
   return (
     <div className="App">
       <SearchBarWrapper />
-      {flights.length > 0 && (
+      {/* {flights.length > 0 && (
         <FlightTable flights={flights} dictionaries={dictionaries} />
-      )}
+      )} */}
+      <FlightOfferCard />
     </div>
   );
 };
