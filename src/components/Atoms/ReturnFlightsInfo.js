@@ -8,7 +8,7 @@ const ReturnFlightsInfo = () => {
         <span className="dummy-logo"></span>
       </div>
       <div className="departure-flight-info">
-        <h5> 16:00</h5>
+        <h3> 16:00</h3>
         <h6 className="departure-airport">SIN</h6>
       </div>
       <div className="travel-info">
@@ -17,7 +17,7 @@ const ReturnFlightsInfo = () => {
         <span className="transport-stops"> Direct</span>
       </div>
       <div className="departure-flight-info">
-        <h5> 18:45</h5>
+        <h3> 18:45</h3>
         <h6 className="departure-airport">DPS</h6>
       </div>
     </div>

@@ -139,3 +139,25 @@
   box-sizing: border-box;
   word-wrap: break-word;
 }
+.auto-suggest-airport {
+  position: absolute;
+  background-color: white;
+  color: black;
+  width: max-content;
+  /* padding: 1.7rem; */
+  top: 10.7rem;
+  left: 5.1rem;
+  list-style: none;
+}
+
+.auto-suggest-airport li {
+  color: black;
+  padding: 0.7rem 1.77rem 0.7rem 1.77rem;
+}
+
+.auto-suggest-airport li:hover {
+  background-color: #303f9f;
+  color: white;
+  width: 100%;
+  cursor: pointer;
+}

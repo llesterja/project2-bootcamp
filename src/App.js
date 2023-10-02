@@ -9,18 +9,23 @@ const App = () => {
   const [flights, setFlights] = useState([]);
   const [dictionaries, setDictionaries] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const rawData = await getData();
-      const { data } = rawData;
-      const { dictionaries } = data;
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const rawData = await getData();
+  //     const { data } = rawData;
 
-      setFlights(data.data);
-      setDictionaries(dictionaries);
-    };
+  //     console.log(data);
+  //     data.data.forEach((offer) => {
+  //       console.log(offer.price.total);
+  //     });
 
-    fetchData();
-  }, []);
+  //     // const { dictionaries } = data;
+  //     // setFlights(data.data);
+  //     // setDictionaries(dictionaries);
+  //   };
+
+  //   fetchData();
+  // }, []);
   return (
     <div className="App">
       <SearchBarWrapper />
