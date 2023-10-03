@@ -45,10 +45,6 @@
   font-weight: 500;
 }
 
-.DateInput_input {
-  width: 84%;
-}
-
 .accordian-container {
   position: absolute;
   top: 16%;
@@ -78,6 +74,11 @@
   justify-content: center;
   padding: 1rem;
 }
+.toggle-menu,
+.passenger-toggle-button {
+  min-width: 12.875rem;
+}
+
 .label-text {
   display: flex;
   flex-direction: column;

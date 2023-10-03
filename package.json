@@ -24,8 +24,12 @@
 =======
     "@mui/material": "^5.14.10",
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 6a3cde5 (styling: worked on cabin class drop down menu)
 =======
+=======
+    "amadeus": "^9.0.0",
+>>>>>>> b96f88a (refactor: worked on using UseContext to control search and date state in searchbar comp)
     "axios": "^1.5.0",
 >>>>>>> ec9de69 (chore: axios install and dir set up)
     "moment": "^2.29.4",

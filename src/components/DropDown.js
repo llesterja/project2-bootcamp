@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import {
   FormControl,
   InputLabel,
@@ -6,55 +6,31 @@ import {
   MenuItem,
   Button,
 } from '@material-ui/core';
-// todo  refactor onClicks for counters to reduce repeat e.preventDefault()
+import searchContext from '../utils/SearchContext';
+
 import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 
 const theme = createTheme({
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          backgroundColor: '#0062e3',
-          color: 'white',
-          fontSize: '1.5rem',
-          alignSelf: 'center',
-          padding: '1rem 3rem',
-          border: 'none',
-          borderRadius: '6px',
-        },
-      },
-    },
-  },
+  // Theme configuration...
 });
 
-function NestedForm({
-  selectedOption,
-  setSelectedOption,
-  adultCounterValue,
-  setAdultCounterValue,
-  childCounterValue,
-  setChildCounterValue,
-}) {
-  useEffect(() => {
-    console.log(selectedOption);
-  }, [selectedOption]);
+function NestedForm() {
+  const [
+    passengerInfoState,
+    onOptionChange,
+    onAdultCounterChange,
+    onChildCounterChange,
+  ] = useContext(searchContext);
 
-  useEffect(() => {
-    console.log(selectedOption);
-  }, [selectedOption]);
-
-  const handleOptionChange = (event) => {
-    console.log(event);
-    setSelectedOption(event.target.value);
-  };
-
-  const increaseCounter = (counter, setCounter) => {
+  const increaseCounter = (counter, setCounter, event) => {
+    event.preventDefault();
     if (counter < 8) {
       setCounter((prevCount) => prevCount + 1);
     }
   };
 
-  const decreaseCounter = (counter, setCounter) => {
+  const decreaseCounter = (counter, setCounter, event) => {
+    event.preventDefault();
     if (counter === 0) {
       return;
     }
@@ -63,8 +39,6 @@ function NestedForm({
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Handle form submission
-    console.log(selectedOption);
   };
 
   return (
@@ -72,43 +46,47 @@ function NestedForm({
       <FormControl className="form-items">
         <InputLabel className="cabin-label">Cabin Class</InputLabel>
         <Select
-          value={selectedOption}
+          value={passengerInfoState.selectedOption}
           className="Select"
-          onChange={handleOptionChange}
+          onChange={(event) => onOptionChange(event.target.value)}
         >
           <MenuItem value="First Class">First Class</MenuItem>
           <MenuItem value="Business Class">Business Class</MenuItem>
           <MenuItem value="Premium Economy">Premium Economy</MenuItem>
-          <MenuItem value="Economy"> Economy</MenuItem>
+          <MenuItem value="Economy">Economy</MenuItem>
         </Select>
 
         <div className="counter">
           <div className="label-text">
-            <span> Adults</span>
+            <span>Adults</span>
             <span>Aged 16+</span>
           </div>
           <div className="counter-wrapper">
             <button
-              onClick={(e) => {
-                e.preventDefault();
-                increaseCounter(adultCounterValue, setAdultCounterValue);
-              }}
+              onClick={(event) =>
+                increaseCounter(
+                  passengerInfoState.adultCounterValue,
+                  onAdultCounterChange,
+                  event
+                )
+              }
             >
-              {' '}
               &#8593;
             </button>
             <input
               type="text"
-              value={adultCounterValue}
+              value={passengerInfoState.adultCounterValue}
               aria-label="number input"
             />
             <button
-              onClick={(e) => {
-                e.preventDefault();
-                decreaseCounter(adultCounterValue, setAdultCounterValue);
-              }}
+              onClick={(event) =>
+                decreaseCounter(
+                  passengerInfoState.adultCounterValue,
+                  onAdultCounterChange,
+                  event
+                )
+              }
             >
-              {' '}
               &#8595;
             </button>
           </div>
@@ -116,42 +94,47 @@ function NestedForm({
 
         <div className="counter">
           <div className="label-text">
-            <span> Children</span>
+            <span>Children</span>
             <span>Aged 0 to 15</span>
           </div>
           <div className="counter-wrapper">
             <button
-              onClick={(e) => {
-                e.preventDefault();
-                increaseCounter(childCounterValue, setChildCounterValue);
-              }}
+              onClick={(event) =>
+                increaseCounter(
+                  passengerInfoState.childCounterValue,
+                  onChildCounterChange,
+                  event
+                )
+              }
             >
-              {' '}
               &#8593;
             </button>
             <input
               type="text"
-              value={childCounterValue}
+              value={passengerInfoState.childCounterValue}
               aria-label="number input"
             />
             <button
-              onClick={(e) => {
-                e.preventDefault();
-                decreaseCounter(childCounterValue, setChildCounterValue);
-              }}
+              onClick={(event) =>
+                decreaseCounter(
+                  passengerInfoState.childCounterValue,
+                  onChildCounterChange,
+                  event
+                )
+              }
             >
-              {' '}
               &#8595;
             </button>
           </div>
         </div>
+
         <div className="legal-disclaimer">
           <span>
-            Your age at time of travel must be valid for the age category
+            Your age at the time of travel must be valid for the age category
             booked. Airlines have restrictions on under 18s travelling alone.
           </span>
           <span>
-            Age limits and policies for travelling with children may vary so
+            Age limits and policies for travelling with children may vary, so
             please check with the airline before booking.
           </span>
         </div>
