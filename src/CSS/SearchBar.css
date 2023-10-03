@@ -145,8 +145,7 @@
   color: black;
   width: max-content;
   /* padding: 1.7rem; */
-  top: 10.7rem;
-  left: 5.1rem;
+
   list-style: none;
 }
 
@@ -160,4 +159,14 @@
   color: white;
   width: 100%;
   cursor: pointer;
+}
+
+.departure-suggestions {
+  top: 10.7rem;
+  left: 5.1rem;
+}
+
+.destination-suggestions {
+  top: 10.7rem;
+  left: 15.2%;
 }

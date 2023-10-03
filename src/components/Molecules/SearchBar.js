@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useRef } from 'react';
-import DatePicker from '../CalendarComponent';
+import DatePicker from './CalendarComponent';
 import '../../CSS/App.css';
 import '../../CSS/SearchBar.css';
 import ModelContainer from '../Organisms/ModelContainer';
@@ -19,8 +19,10 @@ const SearchBar = () => {
     startDate: null,
     endDate: null,
   });
-  const [query, setQuery] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
+  const [departureQuery, setDepartureQuery] = useState('');
+  const [destinationQuery, setDestinationQuery] = useState('');
+  const [departureSuggestions, setDepartureSuggestions] = useState([]);
+  const [destinationSuggestions, setDestinationSuggestions] = useState([]);
   const debounceTimeoutRef = useRef(null);
 
   const debounce = (func, delay) => {
@@ -31,11 +33,12 @@ const SearchBar = () => {
       }, delay);
     };
   };
-  const handleSearch = debounce(async (searchQuery) => {
+  const handleSearch = debounce(async (searchQuery, setSuggestions) => {
     if (searchQuery.trim().length === 0) {
       setSuggestions([]);
       return;
     }
+
     const authDetails = await getAuth();
 
     try {
@@ -51,18 +54,22 @@ const SearchBar = () => {
 
       // Process the API response
       setSuggestions(data.data);
-      console.log(suggestions);
     } catch (error) {
       // Handle any errors that occur during the API call
       console.error('Error fetching API data:', error);
     }
-    // setSuggestions(apiResponse);
   }, 300);
 
-  const handleChange = (event) => {
+  const handleChange = (event, setQuery, setSuggestions) => {
     const { value } = event.target;
     setQuery(value);
-    handleSearch(value);
+    handleSearch(value, setSuggestions);
+  };
+
+  const handleSuggestionClick = (suggestion, inputId, setSuggestionsArray) => {
+    const departureInput = document.getElementById(inputId);
+    departureInput.value = suggestion;
+    setSuggestionsArray([]);
   };
 
   const memoizedSearchArray = useMemo(
@@ -84,15 +91,26 @@ const SearchBar = () => {
               className="departure-arrival"
               id="departure"
               placeholder="Country, City or Airport"
-              onChange={handleChange}
+              onChange={(event) => {
+                handleChange(event, setDepartureQuery, setDepartureSuggestions);
+              }}
               autoComplete="off"
             />
-            {suggestions.length > 0 && (
-              <ul className="auto-suggest-airport">
-                {suggestions.map((suggestion) => {
-                  console.log(suggestion);
+            {departureSuggestions.length > 0 && (
+              <ul className="auto-suggest-airport departure-suggestions">
+                {departureSuggestions.map((suggestion) => {
                   return (
-                    <li clßassName="auto-suggest-airport" key={suggestion.id}>
+                    <li
+                      className="departure-suggestions"
+                      key={suggestion.id}
+                      onClick={() => {
+                        handleSuggestionClick(
+                          suggestion.name,
+                          'departure',
+                          setDepartureSuggestions
+                        );
+                      }}
+                    >
                       {suggestion.name}
                     </li>
                   );
@@ -107,7 +125,36 @@ const SearchBar = () => {
               name="arrival"
               id="arrival"
               placeholder="Country, City or Airport"
+              onChange={(event) => {
+                handleChange(
+                  event,
+                  setDestinationQuery,
+                  setDestinationSuggestions
+                );
+              }}
+              autoComplete="off"
             />
+            {destinationSuggestions.length > 0 && (
+              <ul className="auto-suggest-airport destination-suggestions">
+                {destinationSuggestions.map((suggestion) => {
+                  return (
+                    <li
+                      className="destination-suggestion"
+                      key={suggestion.id}
+                      onClick={() => {
+                        handleSuggestionClick(
+                          suggestion.name,
+                          'arrival',
+                          setDestinationSuggestions
+                        );
+                      }}
+                    >
+                      {suggestion.name}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
           </div>
           <dateRangeContext.Provider value={{ dateRange, setDateRange }}>
             <DatePicker className="calendar-input" />

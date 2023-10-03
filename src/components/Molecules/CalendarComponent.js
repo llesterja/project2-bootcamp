@@ -4,7 +4,7 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import moment from 'moment';
 import 'moment/locale/en-gb';
-import dateRangeContext from '../utils/dateRangeContext';
+import dateRangeContext from '../../utils/dateRangeContext';
 
 moment.locale('en-gb');
 
