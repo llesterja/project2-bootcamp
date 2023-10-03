@@ -23,7 +23,11 @@
     "axios": "^1.5.1",
 =======
     "@mui/material": "^5.14.10",
+<<<<<<< HEAD
 >>>>>>> 6a3cde5 (styling: worked on cabin class drop down menu)
+=======
+    "axios": "^1.5.0",
+>>>>>>> ec9de69 (chore: axios install and dir set up)
     "moment": "^2.29.4",
     "prop-types": "^15.8.1",
 >>>>>>> homepage
