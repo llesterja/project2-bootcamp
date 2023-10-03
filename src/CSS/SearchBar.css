@@ -1,0 +1,172 @@
+.searchbar form {
+  display: flex;
+  align-items: stretch;
+  gap: 0.25rem;
+  margin: 1rem;
+}
+
+.searchbar form:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+.searchbar form input,
+.searchbar form button {
+  height: 3.4rem;
+}
+
+.origin,
+.destination {
+  display: flex;
+  flex-direction: column;
+}
+
+.origin label,
+.destination label {
+  position: absolute;
+  z-index: 1;
+  color: black;
+  font-weight: 400;
+  margin-left: 0.5rem;
+  width: 17.2333px;
+  height: 20px;
+}
+
+.origin label,
+.destination label,
+.searchbar-heading {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.search-wrapper {
+  background-color: #05203c;
+  width: fit-content;
+  margin: 2rem;
+  padding: 2rem;
+  color: white;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.DateInput_input {
+  height: 3.4rem;
+  padding: 0.5rem;
+}
+.searchbar-heading {
+  margin-left: 1rem;
+  width: max-content;
+  min-width: 626.3px;
+}
+
+.accordian-container {
+  position: absolute;
+  width: -moz-fit-content;
+  width: inherit;
+  padding: 1.9rem;
+  border: solid black 1px;
+  z-index: 2;
+  background-color: white;
+  border-radius: 8px;
+  color: black;
+}
+
+.cabin-label {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.form-items {
+  display: block;
+}
+
+.departure-arrival {
+  padding: 11px 11px 9px 11px;
+}
+
+.toggle-menu,
+.toggle-menu:first-child {
+  min-width: 13rem;
+}
+
+.toggle-menu button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+}
+.label-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.counter {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5rem;
+}
+
+.counter-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+}
+
+.counter-wrapper button {
+  padding: 0.5rem;
+}
+
+.counter input {
+  flex: 1;
+  display: inline-block;
+  padding: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  box-sizing: border-box;
+  max-width: 2.5rem;
+}
+
+.legal-disclaimer {
+  margin: 1rem auto 1rem;
+  width: 25rem;
+  font-size: 0.8rem;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+.auto-suggest-airport {
+  position: absolute;
+  background-color: white;
+  color: black;
+  width: max-content;
+  /* padding: 1.7rem; */
+
+  list-style: none;
+}
+
+.auto-suggest-airport li {
+  color: black;
+  padding: 0.7rem 1.77rem 0.7rem 1.77rem;
+}
+
+.auto-suggest-airport li:hover {
+  background-color: #303f9f;
+  color: white;
+  width: 100%;
+  cursor: pointer;
+}
+
+.departure-suggestions {
+  top: 10.7rem;
+  left: 5.1rem;
+}
+
+.destination-suggestions {
+  top: 10.7rem;
+  left: 15.2%;
+}

@@ -1,20 +1,40 @@
-import React from "react";
-import logo from "./logo.png";
-import "./App.css";
+import React, { useState, useEffect } from 'react';
+import SearchBarWrapper from './components/Organisms/SearchBarWrapper';
+import './CSS/App.css';
+import getData from './utils/UseApi';
+import FlightTable from './components/FlightsTable';
+import FlightOfferCard from './components/Molecules/FlightOfferCard';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-        </header>
-      </div>
-    );
-  }
-}
+const App = () => {
+  const [flights, setFlights] = useState([]);
+  const [dictionaries, setDictionaries] = useState([]);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const rawData = await getData();
+  //     const { data } = rawData;
+
+  //     console.log(data);
+  //     data.data.forEach((offer) => {
+  //       console.log(offer.price.total);
+  //     });
+
+  //     // const { dictionaries } = data;
+  //     // setFlights(data.data);
+  //     // setDictionaries(dictionaries);
+  //   };
+
+  //   fetchData();
+  // }, []);
+  return (
+    <div className="App">
+      <SearchBarWrapper />
+      {/* {flights.length > 0 && (
+        <FlightTable flights={flights} dictionaries={dictionaries} />
+      )} */}
+      <FlightOfferCard />
+    </div>
+  );
+};
 
 export default App;

@@ -1,0 +1,75 @@
+.card-paper {
+  background-color: white;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.flight-itinery {
+  border-radius: 20px 0 0 20px;
+  justify-content: center;
+}
+
+.return-info,
+.departure-flight-info,
+.travel-info,
+.flight-line,
+.logo-container,
+.flight-itinery,
+.offer-card {
+  display: flex;
+}
+
+.offer-card {
+  border-radius: 20px;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 1rem;
+}
+
+.return-info {
+  gap: 2rem;
+}
+
+.dummy-logo {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  background-color: blueviolet;
+}
+
+.departure-flight-info,
+.travel-info,
+.logo-container {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.travel-info {
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.travel-info span {
+  margin-right: 1rem;
+}
+
+.offer-wrapper {
+  border-radius: 0 20px 20px 0;
+}
+
+.offer-info {
+  height: 100%;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.plane-icon {
+  transform: rotate(90deg);
+  color: gray;
+}
