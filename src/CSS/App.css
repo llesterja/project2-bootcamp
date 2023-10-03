@@ -3,3 +3,103 @@
   padding: 0;
   box-sizing: border-box;
 }
+<<<<<<< HEAD
+=======
+
+.searchbar form {
+  display: flex;
+  gap: 0.25rem;
+  margin: 1rem;
+}
+
+.searchbar form:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+.search-wrapper {
+  background-color: #05203c;
+  width: fit-content;
+  margin: 2rem;
+  padding: 2rem;
+  color: white;
+  font-weight: 500;
+  /* font-size: 1.5px; */
+}
+
+.DateInput_input {
+  width: 84%;
+}
+
+.accordian-container {
+  position: absolute;
+  top: 16%;
+  left: 42.7%;
+  width: -moz-fit-content;
+  width: inherit;
+  padding: 1.9rem;
+  border: solid black 1px;
+  z-index: 2;
+  background-color: white;
+  border-radius: 8px;
+  color: black;
+}
+
+.cabin-label {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.form-items {
+  display: block;
+}
+
+.toggle-menu button {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+.label-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.counter {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5rem;
+}
+
+.counter-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 0.5rem;
+}
+
+.counter-wrapper button {
+  padding: 0.5rem;
+}
+
+.counter input {
+  flex: 1;
+  width: 2.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.legal-disclaimer {
+  margin: 1rem auto 1rem;
+  width: 23rem;
+  font-size: 0.8rem;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+>>>>>>> 6a3cde5 (styling: worked on cabin class drop down menu)
