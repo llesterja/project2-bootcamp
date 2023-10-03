@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import axios from 'axios';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -6,9 +6,32 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import getAmadeusToken from '../../api/UseAmadeus';
 
 const DestinationCard=()=>{
   console.log('this is a card that displays a picture of the destination country, details of the flight, price of the flight, dates travelling if applicable')
+  
+  const surpriseSearch = async () => {
+    const tokenData = await getAmadeusToken();
+    const origin = "SIN"
+    const amadeusFlightSurprise = await axios.get(
+      ` https://test.api.amadeus.com/v1/shopping/flight-destinations?origin=${origin}`,
+      {
+        headers: {
+          Authorization: `Bearer ${tokenData.access_token}`,
+        },
+      }
+    );
+    console.log(amadeusFlightSurprise.data)
+    return amadeusFlightSurprise;
+    }
+
+  useEffect(()=>{
+    const searchResult=surpriseSearch();
+    console.log(searchResult)
+  },[]);
+
+
   return(
     // there is 2 variation of this, one with search inputs and 1 with database inputs
     // create a generic one that can support both and build a gallery view of all available flights

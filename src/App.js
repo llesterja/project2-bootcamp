@@ -3,6 +3,7 @@ import "./App.css";
 import DestinationCard from "./components/DestinationCard";
 import DestinationGallery from "./components/DestinationGallery"
 
+
 class App extends React.Component {
   render() {
     return (
