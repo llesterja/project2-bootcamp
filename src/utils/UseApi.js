@@ -1,5 +1,4 @@
 import axios from 'axios';
-<<<<<<< HEAD
 const getAuth = async () => {
   try {
     const { data: tokenData } = await axios.post(
@@ -44,23 +43,3 @@ export default getAuth;
 // );
 
 // return flightData;
-=======
-
-const UseApi = (endpoint, method, parameters, authentication) => {
-  console.log(authentication);
-  return axios[method](endpoint, {
-    params: parameters,
-    headers: {
-      Authorization: `Bearer ${authentication}`,
-    },
-  })
-    .then((response) => {
-      return response.data;
-    })
-    .catch((error) => {
-      throw error;
-    });
-};
-
-export default UseApi;
->>>>>>> b96f88a (refactor: worked on using UseContext to control search and date state in searchbar comp)
