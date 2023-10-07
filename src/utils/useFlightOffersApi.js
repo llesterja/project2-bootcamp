@@ -1,24 +1,42 @@
-import { useState } from 'react';
-import UseApi from '../utils/UseApi';
+import getAuth from './UseAuthAmadeus';
+import axios from 'axios';
+import moment from 'moment';
 
-const useFlightOffersApi = (endpoint, method, parameters, authentication) => {
-  const [result, setResult] = useState(null);
+const getFlightOffers = async (
+  departure,
+  destination,
+  datesObject,
+  cabinClass,
+  adults,
+  children
+) => {
+  const authToken = await getAuth();
 
-  const fetchData = () => {
-    return new Promise((resolve, reject) => {
-      UseApi(endpoint, method, parameters, authentication)
-        .then((response) => {
-          setResult(response);
-          resolve(response);
-        })
-        .catch((error) => {
-          // Handle the error
-          reject(error);
-        });
-    });
+  const { endDate, startDate } = datesObject;
+  const { _d: returnDate } = endDate;
+  const { _d: departDate } = startDate;
+  const formattedReturnDate = moment(returnDate).format('YYYY-MM-DD');
+  const formattedDepartureDate = moment(departDate).format('YYYY-MM-DD');
+
+  const travelClassDict = {
+    FirstClass: 'FIRST',
+    BusinessClass: 'BUSINESS',
+    PremiumEconomy: 'PREMIUM_ECONOMY',
+    Economy: 'ECONOMY',
   };
 
-  return fetchData;
+  const travelClass = travelClassDict[[...cabinClass].join('')];
+
+  const flightData = await axios.get(
+    `https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=LHR&destinationLocationCode=HKG&departureDate=${formattedDepartureDate}&returnDate=${formattedReturnDate}&adults=${adults}&travelClass=${travelClass}&children=${children}&nonStop=false&max=5`,
+    {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    }
+  );
+  const responseData = flightData.data;
+  return responseData;
 };
 
-export default useFlightOffersApi;
+export default getFlightOffers;

@@ -20,7 +20,7 @@
   flex-direction: column;
 }
 
-.origin label,
+/* .origin label,
 .destination label {
   position: absolute;
   z-index: 1;
@@ -36,8 +36,12 @@
 .searchbar-heading {
   display: inline-block;
   vertical-align: middle;
-}
+} */
 
+.mui-auto-suggest {
+  background-color: white;
+  height: 3.525rem;
+}
 .search-wrapper {
   background-color: #05203c;
   width: fit-content;
@@ -64,10 +68,13 @@
   width: inherit;
   padding: 1.9rem;
   border: solid black 1px;
-  z-index: 2;
+  z-index: 1000;
   background-color: white;
   border-radius: 8px;
   color: black;
+  box-sizing: border-box;
+  top: 19%;
+  left: 41%;
 }
 
 .cabin-label {

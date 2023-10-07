@@ -1,38 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import SearchBarWrapper from './components/Organisms/SearchBarWrapper';
 import './CSS/App.css';
-import getData from './utils/UseApi';
+import getData from './utils/UseAuthAmadeus';
 import FlightTable from './components/FlightsTable';
-import FlightOfferCard from './components/Molecules/FlightOfferCard';
+
+import FlightOfferContainer from './components/Organisms/FlightOffersContainer';
 
 const App = () => {
   const [flights, setFlights] = useState([]);
   const [dictionaries, setDictionaries] = useState([]);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const rawData = await getData();
-  //     const { data } = rawData;
-
-  //     console.log(data);
-  //     data.data.forEach((offer) => {
-  //       console.log(offer.price.total);
-  //     });
-
-  //     // const { dictionaries } = data;
-  //     // setFlights(data.data);
-  //     // setDictionaries(dictionaries);
-  //   };
-
-  //   fetchData();
-  // }, []);
   return (
     <div className="App">
       <SearchBarWrapper />
-      {/* {flights.length > 0 && (
-        <FlightTable flights={flights} dictionaries={dictionaries} />
-      )} */}
-      <FlightOfferCard />
+      <FlightOfferContainer />
     </div>
   );
 };

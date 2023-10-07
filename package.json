@@ -5,36 +5,26 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "@mui/material": "^5.14.10",
     "firebase": "^10.4.0",
-=======
-=======
->>>>>>> 6a3cde5 (styling: worked on cabin class drop down menu)
+
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
     "@material-ui/styles": "^4.11.5",
     "@mui/base": "^5.0.0-beta.16",
-<<<<<<< HEAD
+
     "@mui/icons-material": "^5.14.11",
-    "@mui/material": "^5.14.11",
+
     "@mui/x-data-grid": "^6.16.0",
     "axios": "^1.5.1",
-=======
+
     "@mui/material": "^5.14.10",
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 6a3cde5 (styling: worked on cabin class drop down menu)
-=======
-=======
+
     "amadeus": "^9.0.0",
->>>>>>> b96f88a (refactor: worked on using UseContext to control search and date state in searchbar comp)
-    "axios": "^1.5.0",
->>>>>>> ec9de69 (chore: axios install and dir set up)
+
+
     "moment": "^2.29.4",
     "prop-types": "^15.8.1",
->>>>>>> homepage
+
     "react": "^18.1.0",
     "react-dates": "^21.8.0",
     "react-dom": "^18.1.0",

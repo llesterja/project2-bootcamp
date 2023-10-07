@@ -9,6 +9,7 @@ import dateRangeContext from '../../utils/dateRangeContext';
 import axios from 'axios';
 import getAuth from '../../utils/UseAuthAmadeus';
 import getFlightOffers from '../../utils/useFlightOffersApi';
+import AirportAutoSuggest from '../Atoms/MUIAutoSuggest';
 
 const SearchBar = () => {
   const [passengerInfoState, setPassengerInfoState] = useState({
@@ -113,79 +114,10 @@ const SearchBar = () => {
       <searchContext.Provider value={memoizedSearchArray}>
         <form>
           <div className="origin">
-            <label>From</label>
-            <input
-              name="departure"
-              className="departure-arrival"
-              id="departure"
-              placeholder="Country, City or Airport"
-              onChange={(event) => {
-                handleChange(event, setDepartureQuery, setDepartureSuggestions);
-              }}
-              autoComplete="off"
-            />
-            {departureSuggestions.length > 0 && (
-              <ul className="auto-suggest-airport departure-suggestions">
-                {departureSuggestions.map((suggestion) => {
-                  return (
-                    <li
-                      className="departure-suggestions"
-                      key={suggestion.id}
-                      onClick={() => {
-                        handleSuggestionClick(
-                          suggestion.name,
-                          'departure',
-                          setDepartureSuggestions,
-                          setDepartureQuery,
-                          departureSuggestions
-                        );
-                      }}
-                    >
-                      {suggestion.name}
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
+            <AirportAutoSuggest />
           </div>
           <div className="destination">
-            <label>To</label>
-            <input
-              className="departure-arrival"
-              name="arrival"
-              id="arrival"
-              placeholder="Country, City or Airport"
-              onChange={(event) => {
-                handleChange(
-                  event,
-                  setDestinationQuery,
-                  setDestinationSuggestions
-                );
-              }}
-              autoComplete="off"
-            />
-            {destinationSuggestions.length > 0 && (
-              <ul className="auto-suggest-airport destination-suggestions">
-                {destinationSuggestions.map((suggestion) => {
-                  return (
-                    <li
-                      className="destination-suggestion"
-                      key={suggestion.id}
-                      onClick={() => {
-                        handleSuggestionClick(
-                          suggestion.name,
-                          'arrival',
-                          setDestinationSuggestions,
-                          setDestinationQuery
-                        );
-                      }}
-                    >
-                      {suggestion.name}
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
+            <AirportAutoSuggest />
           </div>
           <dateRangeContext.Provider value={{ dateRange, setDateRange }}>
             <DatePicker className="calendar-input" />

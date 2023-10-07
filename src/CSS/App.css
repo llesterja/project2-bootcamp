@@ -3,8 +3,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-<<<<<<< HEAD
-=======
 
 .searchbar form {
   display: flex;
@@ -133,4 +131,3 @@
   box-sizing: border-box;
   word-wrap: break-word;
 }
->>>>>>> 6a3cde5 (styling: worked on cabin class drop down menu)
