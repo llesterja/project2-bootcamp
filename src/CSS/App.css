@@ -1,0 +1,133 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.searchbar form {
+  display: flex;
+  align-items: stretch;
+  gap: 0.25rem;
+  margin: 1rem;
+}
+
+.searchbar form:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+.searchbar form input,
+.searchbar form button {
+  height: 3.4rem;
+}
+
+.origin,
+.destination {
+  display: flex;
+  flex-direction: column;
+}
+
+.origin label,
+.destination label {
+  position: absolute;
+  z-index: 1;
+  color: black;
+  font-weight: 300;
+  margin-left: 0.5rem;
+}
+.search-wrapper {
+  background-color: #05203c;
+  width: fit-content;
+  margin: 2rem;
+  padding: 2rem;
+  color: white;
+  font-weight: 500;
+}
+
+.DateInput_input {
+  height: 3.4rem; /* Adjust the height to match other elements */
+  padding: 0.5rem; /* Adjust the padding to maintain consistent appearance */
+}
+
+.accordian-container {
+  position: absolute;
+  top: 16%;
+  left: 42.7%;
+  width: -moz-fit-content;
+  width: inherit;
+  padding: 1.9rem;
+  border: solid black 1px;
+  z-index: 2;
+  background-color: white;
+  border-radius: 8px;
+  color: black;
+}
+
+.cabin-label {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.form-items {
+  display: block;
+}
+
+.departure-arrival {
+  padding: 11px 11px 9px 11px;
+}
+
+.toggle-menu,
+.toggle-menu:first-child {
+  min-width: 13rem;
+}
+
+.toggle-menu button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+}
+.label-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.counter {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5rem;
+}
+
+.counter-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+}
+
+.counter-wrapper button {
+  padding: 0.5rem;
+}
+
+.counter input {
+  flex: 1;
+  display: inline-block;
+  padding: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  box-sizing: border-box;
+  max-width: 2.5rem;
+}
+
+.legal-disclaimer {
+  margin: 1rem auto 1rem;
+  width: 25rem;
+  font-size: 0.8rem;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}

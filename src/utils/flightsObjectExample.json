@@ -1,0 +1,491 @@
+[
+  {
+    "type": "flight-offer",
+    "id": "1",
+    "source": "GDS",
+    "instantTicketingRequired": false,
+    "nonHomogeneous": false,
+    "oneWay": false,
+    "lastTicketingDate": "2023-10-02",
+    "lastTicketingDateTime": "2023-10-02",
+    "numberOfBookableSeats": 5,
+    "itineraries": [
+      {
+        "duration": "PT14H5M",
+        "segments": [
+          {
+            "departure": {
+              "iataCode": "SYD",
+              "terminal": "1",
+              "at": "2023-10-02T11:30:00"
+            },
+            "arrival": {
+              "iataCode": "MNL",
+              "terminal": "1",
+              "at": "2023-10-02T17:00:00"
+            },
+            "carrierCode": "PR",
+            "number": "212",
+            "aircraft": {
+              "code": "333"
+            },
+            "operating": {
+              "carrierCode": "PR"
+            },
+            "duration": "PT8H30M",
+            "id": "5",
+            "numberOfStops": 0,
+            "blacklistedInEU": false
+          },
+          {
+            "departure": {
+              "iataCode": "MNL",
+              "terminal": "1",
+              "at": "2023-10-02T19:10:00"
+            },
+            "arrival": {
+              "iataCode": "BKK",
+              "at": "2023-10-02T21:35:00"
+            },
+            "carrierCode": "PR",
+            "number": "732",
+            "aircraft": {
+              "code": "321"
+            },
+            "operating": {
+              "carrierCode": "PR"
+            },
+            "duration": "PT3H25M",
+            "id": "6",
+            "numberOfStops": 0,
+            "blacklistedInEU": false
+          }
+        ]
+      },
+      {
+        "duration": "PT16H15M",
+        "segments": [
+          {
+            "departure": {
+              "iataCode": "BKK",
+              "at": "2023-10-15T13:30:00"
+            },
+            "arrival": {
+              "iataCode": "MNL",
+              "terminal": "1",
+              "at": "2023-10-15T18:00:00"
+            },
+            "carrierCode": "PR",
+            "number": "731",
+            "aircraft": {
+              "code": "321"
+            },
+            "operating": {
+              "carrierCode": "PR"
+            },
+            "duration": "PT3H30M",
+            "id": "71",
+            "numberOfStops": 0,
+            "blacklistedInEU": false
+          },
+          {
+            "departure": {
+              "iataCode": "MNL",
+              "terminal": "1",
+              "at": "2023-10-15T22:25:00"
+            },
+            "arrival": {
+              "iataCode": "SYD",
+              "terminal": "1",
+              "at": "2023-10-16T09:45:00"
+            },
+            "carrierCode": "PR",
+            "number": "211",
+            "aircraft": {
+              "code": "333"
+            },
+            "operating": {
+              "carrierCode": "PR"
+            },
+            "duration": "PT8H20M",
+            "id": "72",
+            "numberOfStops": 0,
+            "blacklistedInEU": false
+          }
+        ]
+      }
+    ],
+    "price": {
+      "currency": "GBP",
+      "total": "1749.20",
+      "base": "1408.00",
+      "fees": [
+        {
+          "amount": "0.00",
+          "type": "SUPPLIER"
+        },
+        {
+          "amount": "0.00",
+          "type": "TICKETING"
+        }
+      ],
+      "grandTotal": "1749.20"
+    },
+    "pricingOptions": {
+      "fareType": ["PUBLISHED"],
+      "includedCheckedBagsOnly": true
+    },
+    "validatingAirlineCodes": ["PR"],
+    "travelerPricings": [
+      {
+        "travelerId": "1",
+        "fareOption": "STANDARD",
+        "travelerType": "ADULT",
+        "price": {
+          "currency": "GBP",
+          "total": "874.60",
+          "base": "704.00"
+        },
+        "fareDetailsBySegment": [
+          {
+            "segmentId": "5",
+            "cabin": "PREMIUM_ECONOMY",
+            "fareBasis": "NBAU",
+            "class": "N",
+            "includedCheckedBags": {
+              "weight": 35,
+              "weightUnit": "KG"
+            }
+          },
+          {
+            "segmentId": "6",
+            "cabin": "ECONOMY",
+            "fareBasis": "NBAU",
+            "class": "K",
+            "includedCheckedBags": {
+              "weight": 35,
+              "weightUnit": "KG"
+            }
+          },
+          {
+            "segmentId": "71",
+            "cabin": "ECONOMY",
+            "fareBasis": "NBAU",
+            "class": "K",
+            "includedCheckedBags": {
+              "weight": 35,
+              "weightUnit": "KG"
+            }
+          },
+          {
+            "segmentId": "72",
+            "cabin": "PREMIUM_ECONOMY",
+            "fareBasis": "NBAU",
+            "class": "N",
+            "includedCheckedBags": {
+              "weight": 35,
+              "weightUnit": "KG"
+            }
+          }
+        ]
+      },
+      {
+        "travelerId": "2",
+        "fareOption": "STANDARD",
+        "travelerType": "ADULT",
+        "price": {
+          "currency": "GBP",
+          "total": "874.60",
+          "base": "704.00"
+        },
+        "fareDetailsBySegment": [
+          {
+            "segmentId": "5",
+            "cabin": "PREMIUM_ECONOMY",
+            "fareBasis": "NBAU",
+            "class": "N",
+            "includedCheckedBags": {
+              "weight": 35,
+              "weightUnit": "KG"
+            }
+          },
+          {
+            "segmentId": "6",
+            "cabin": "ECONOMY",
+            "fareBasis": "NBAU",
+            "class": "K",
+            "includedCheckedBags": {
+              "weight": 35,
+              "weightUnit": "KG"
+            }
+          },
+          {
+            "segmentId": "71",
+            "cabin": "ECONOMY",
+            "fareBasis": "NBAU",
+            "class": "K",
+            "includedCheckedBags": {
+              "weight": 35,
+              "weightUnit": "KG"
+            }
+          },
+          {
+            "segmentId": "72",
+            "cabin": "PREMIUM_ECONOMY",
+            "fareBasis": "NBAU",
+            "class": "N",
+            "includedCheckedBags": {
+              "weight": 35,
+              "weightUnit": "KG"
+            }
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    "type": "flight-offer",
+    "id": "101",
+    "source": "GDS",
+    "instantTicketingRequired": false,
+    "nonHomogeneous": false,
+    "oneWay": false,
+    "lastTicketingDate": "2023-10-02",
+    "lastTicketingDateTime": "2023-10-02",
+    "numberOfBookableSeats": 9,
+    "itineraries": [
+      {
+        "duration": "PT33H20M",
+        "segments": [
+          {
+            "departure": {
+              "iataCode": "SYD",
+              "terminal": "1",
+              "at": "2023-10-02T15:15:00"
+            },
+            "arrival": {
+              "iataCode": "HKG",
+              "terminal": "1",
+              "at": "2023-10-02T21:30:00"
+            },
+            "carrierCode": "CX",
+            "number": "100",
+            "aircraft": {
+              "code": "77W"
+            },
+            "operating": {
+              "carrierCode": "CX"
+            },
+            "duration": "PT9H15M",
+            "id": "31",
+            "numberOfStops": 0,
+            "blacklistedInEU": false
+          },
+          {
+            "departure": {
+              "iataCode": "HKG",
+              "terminal": "1",
+              "at": "2023-10-03T18:35:00"
+            },
+            "arrival": {
+              "iataCode": "BKK",
+              "at": "2023-10-03T20:35:00"
+            },
+            "carrierCode": "CX",
+            "number": "703",
+            "aircraft": {
+              "code": "333"
+            },
+            "operating": {
+              "carrierCode": "CX"
+            },
+            "duration": "PT3H",
+            "id": "32",
+            "numberOfStops": 0,
+            "blacklistedInEU": false
+          }
+        ]
+      },
+      {
+        "duration": "PT19H20M",
+        "segments": [
+          {
+            "departure": {
+              "iataCode": "BKK",
+              "at": "2023-10-15T12:30:00"
+            },
+            "arrival": {
+              "iataCode": "HKG",
+              "terminal": "1",
+              "at": "2023-10-15T16:30:00"
+            },
+            "carrierCode": "CX",
+            "number": "754",
+            "aircraft": {
+              "code": "333"
+            },
+            "operating": {
+              "carrierCode": "CX"
+            },
+            "duration": "PT3H",
+            "id": "80",
+            "numberOfStops": 0,
+            "blacklistedInEU": false
+          },
+          {
+            "departure": {
+              "iataCode": "HKG",
+              "terminal": "1",
+              "at": "2023-10-15T23:55:00"
+            },
+            "arrival": {
+              "iataCode": "SYD",
+              "terminal": "1",
+              "at": "2023-10-16T11:50:00"
+            },
+            "carrierCode": "CX",
+            "number": "101",
+            "aircraft": {
+              "code": "77W"
+            },
+            "operating": {
+              "carrierCode": "CX"
+            },
+            "duration": "PT8H55M",
+            "id": "81",
+            "numberOfStops": 0,
+            "blacklistedInEU": false
+          }
+        ]
+      }
+    ],
+    "price": {
+      "currency": "GBP",
+      "total": "2634.00",
+      "base": "1904.00",
+      "fees": [
+        {
+          "amount": "0.00",
+          "type": "SUPPLIER"
+        },
+        {
+          "amount": "0.00",
+          "type": "TICKETING"
+        }
+      ],
+      "grandTotal": "2634.00"
+    },
+    "pricingOptions": {
+      "fareType": ["PUBLISHED"],
+      "includedCheckedBagsOnly": true
+    },
+    "validatingAirlineCodes": ["CX"],
+    "travelerPricings": [
+      {
+        "travelerId": "1",
+        "fareOption": "STANDARD",
+        "travelerType": "ADULT",
+        "price": {
+          "currency": "GBP",
+          "total": "1317.00",
+          "base": "952.00"
+        },
+        "fareDetailsBySegment": [
+          {
+            "segmentId": "31",
+            "cabin": "PREMIUM_ECONOMY",
+            "fareBasis": "ER99AUIR",
+            "brandedFare": "PEYESSENT",
+            "class": "E",
+            "includedCheckedBags": {
+              "quantity": 2
+            }
+          },
+          {
+            "segmentId": "32",
+            "cabin": "ECONOMY",
+            "fareBasis": "ER99AUIR",
+            "brandedFare": "PEYESSENT",
+            "class": "H",
+            "includedCheckedBags": {
+              "quantity": 2
+            }
+          },
+          {
+            "segmentId": "80",
+            "cabin": "ECONOMY",
+            "fareBasis": "ER99AUIR",
+            "brandedFare": "PEYESSENT",
+            "class": "H",
+            "includedCheckedBags": {
+              "quantity": 2
+            }
+          },
+          {
+            "segmentId": "81",
+            "cabin": "PREMIUM_ECONOMY",
+            "fareBasis": "ER99AUIR",
+            "brandedFare": "PEYESSENT",
+            "class": "E",
+            "includedCheckedBags": {
+              "quantity": 2
+            }
+          }
+        ]
+      },
+      {
+        "travelerId": "2",
+        "fareOption": "STANDARD",
+        "travelerType": "ADULT",
+        "price": {
+          "currency": "GBP",
+          "total": "1317.00",
+          "base": "952.00"
+        },
+        "fareDetailsBySegment": [
+          {
+            "segmentId": "31",
+            "cabin": "PREMIUM_ECONOMY",
+            "fareBasis": "ER99AUIR",
+            "brandedFare": "PEYESSENT",
+            "class": "E",
+            "includedCheckedBags": {
+              "quantity": 2
+            }
+          },
+          {
+            "segmentId": "32",
+            "cabin": "ECONOMY",
+            "fareBasis": "ER99AUIR",
+            "brandedFare": "PEYESSENT",
+            "class": "H",
+            "includedCheckedBags": {
+              "quantity": 2
+            }
+          },
+          {
+            "segmentId": "80",
+            "cabin": "ECONOMY",
+            "fareBasis": "ER99AUIR",
+            "brandedFare": "PEYESSENT",
+            "class": "H",
+            "includedCheckedBags": {
+              "quantity": 2
+            }
+          },
+          {
+            "segmentId": "81",
+            "cabin": "PREMIUM_ECONOMY",
+            "fareBasis": "ER99AUIR",
+            "brandedFare": "PEYESSENT",
+            "class": "E",
+            "includedCheckedBags": {
+              "quantity": 2
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
