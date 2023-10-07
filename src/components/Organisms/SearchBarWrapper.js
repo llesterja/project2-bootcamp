@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from '../Molecules/SearchBarMUI';
+import SearchBar from '../Molecules/SearchBar';
 
 const SearchBarWrapper = () => {
   return (
