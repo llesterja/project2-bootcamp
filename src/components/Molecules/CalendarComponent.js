@@ -9,7 +9,7 @@ import dateRangeContext from '../../utils/dateRangeContext';
 moment.locale('en-gb');
 
 const DatePicker = () => {
-  const { dateRange, setDateRange } = useContext(dateRangeContext);
+  const [dateRange, setDateRange] = useContext(dateRangeContext);
   const [focusedInput, setFocusedInput] = useState(null);
 
   const handleDateRangeChange = ({ startDate, endDate }) => {

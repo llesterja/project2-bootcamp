@@ -9,39 +9,16 @@
   border-radius: 5px 0 0 5px;
 }
 
-.searchbar form input,
-.searchbar form button {
-  height: 3.4rem;
+.MuiSvgIcon-root {
+  position: relative;
+  top: 0;
 }
-
-.origin,
-.destination {
-  display: flex;
-  flex-direction: column;
-}
-
-/* .origin label,
-.destination label {
-  position: absolute;
-  z-index: 1;
-  color: black;
-  font-weight: 400;
-  margin-left: 0.5rem;
-  width: 17.2333px;
-  height: 20px;
-}
-
-.origin label,
-.destination label,
-.searchbar-heading {
-  display: inline-block;
-  vertical-align: middle;
-} */
 
 .mui-auto-suggest {
   background-color: white;
-  height: 3.525rem;
+  padding: 0.5rem;
 }
+
 .search-wrapper {
   background-color: #05203c;
   width: fit-content;
@@ -53,7 +30,6 @@
 }
 
 .DateInput_input {
-  height: 3.4rem;
   padding: 0.5rem;
 }
 .searchbar-heading {
@@ -100,6 +76,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 1rem;
+  height: 4.7rem;
 }
 .label-text {
   display: flex;
@@ -176,4 +153,31 @@
 .destination-suggestions {
   top: 10.7rem;
   left: 15.2%;
+}
+.DateRangePickerInput {
+  height: 4.7rem;
+}
+
+.searchbar-btn {
+  height: 4.7rem;
+}
+
+.DateInput_fang {
+  top: 69px !important;
+}
+.DateRangePicker_picker {
+  top: 80px !important;
+}
+.DateInput_input_1 {
+  position: relative;
+  top: 0.3rem;
+  height: 4.29rem;
+}
+.destination-arrival-wrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.accordian-container button {
+  height: 3.2rem;
 }
