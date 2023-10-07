@@ -4,8 +4,8 @@ import DestinationCard from "./components/DestinationCard";
 import DestinationGallery from "./components/DestinationGallery"
 
 
-class App extends React.Component {
-  render() {
+const App = () => {
+
     return (
       <div className="App">
         <header className="App-header">
@@ -16,7 +16,7 @@ class App extends React.Component {
         </header>
       </div>
     );
-  }
+  
 }
 
 export default App;
