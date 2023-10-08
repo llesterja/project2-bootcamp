@@ -18,17 +18,19 @@ const getFlightOffers = async (
   const formattedReturnDate = moment(returnDate).format('YYYY-MM-DD');
   const formattedDepartureDate = moment(departDate).format('YYYY-MM-DD');
 
+  console.log(departure);
   const travelClassDict = {
     FirstClass: 'FIRST',
     BusinessClass: 'BUSINESS',
     PremiumEconomy: 'PREMIUM_ECONOMY',
     Economy: 'ECONOMY',
   };
-
-  const travelClass = travelClassDict[[...cabinClass].join('')];
-
+  const formattedCabinClass = cabinClass.replace(/\s/g, '');
+  console.log(formattedCabinClass);
+  const travelClass = travelClassDict[formattedCabinClass];
+  console.log(travelClass);
   const flightData = await axios.get(
-    `https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=LHR&destinationLocationCode=HKG&departureDate=${formattedDepartureDate}&returnDate=${formattedReturnDate}&adults=${adults}&travelClass=${travelClass}&children=${children}&nonStop=false&max=5`,
+    `https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=${departure}&destinationLocationCode=${destination}&departureDate=${formattedDepartureDate}&returnDate=${formattedReturnDate}&adults=${adults}&travelClass=${travelClass}&children=${children}&nonStop=false&max=20`,
     {
       headers: {
         Authorization: `Bearer ${authToken}`,

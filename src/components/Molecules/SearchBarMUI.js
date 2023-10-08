@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import DatePicker from './CalendarComponent';
 import '../../CSS/App.css';
 import '../../CSS/SearchBar.css';
@@ -8,14 +8,21 @@ import searchContext from '../../utils/SearchContext';
 import getFlightOffers from '../../utils/useFlightOffersApi';
 import AirportAutoSuggest from '../Atoms/MUIAutoSuggest';
 import dateRangeContext from '../../utils/dateRangeContext';
+import dropDownContext from '../../utils/dropDownContext';
+import { DropdownContext } from '@mui/base';
 
 const SearchBar = () => {
-  const [passengerInfoState, , departureQuery, destinationQuery] =
-    useContext(searchContext);
+  const [
+    passengerInfoState,
+    setPassengerInfoState,
+    departureQuery,
+    destinationQuery,
+  ] = useContext(searchContext);
   const [dateRange] = useContext(dateRangeContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log('The departure query in handleSubmit is:', departureQuery);
     const offers = await getFlightOffers(
       departureQuery,
       destinationQuery,
@@ -37,8 +44,9 @@ const SearchBar = () => {
         <AirportAutoSuggest />
 
         <DatePicker className="calendar-input" />
-
-        <ModelContainer />
+        <dropDownContext.Provider value={[handleSubmit]}>
+          <ModelContainer />
+        </dropDownContext.Provider>
 
         <Button
           variant="contained"

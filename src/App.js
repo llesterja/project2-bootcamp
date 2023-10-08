@@ -22,10 +22,7 @@ const App = () => {
   });
 
   const [departureQuery, setDepartureQuery] = useState('');
-  const [destinationQuery, setDestinationQuery] = useState({
-    name: '',
-    IATACODE: '',
-  });
+  const [destinationQuery, setDestinationQuery] = useState('');
   const [departureSuggestions, setDepartureSuggestions] = useState([]);
   const [destinationSuggestions, setDestinationSuggestions] = useState([]);
 
@@ -41,8 +38,8 @@ const App = () => {
   };
 
   const handleSearch = debounce(async (searchQuery, setSuggestions) => {
-    const trimmedQuery = String(searchQuery).trim(); // Ensure searchQuery is a string and trim it
-    console.log(trimmedQuery);
+    const trimmedQuery = String(searchQuery).trim();
+    console.log('trimmed Query is:', trimmedQuery);
     if (trimmedQuery.length === 0) {
       setSuggestions([]);
       return;
@@ -52,7 +49,9 @@ const App = () => {
 
     try {
       const apiResponse = await axios.get(
-        `https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT&keyword=${trimmedQuery}&page[limit]=10&view=LIGHT`,
+        `https://test.api.amadeus.com/v1/reference-data/locations/cities?keyword=${encodeURIComponent(
+          trimmedQuery
+        )}&max=10&include=AIRPORTS`,
         {
           headers: {
             Authorization: `Bearer ${authDetails}`,
@@ -60,14 +59,25 @@ const App = () => {
         }
       );
       const { data } = apiResponse;
-      console.log(data.data);
       // Process the API response
-      setSuggestions(data.data);
+      const airports = data.included.airports;
+      const airportList = [];
+
+      for (const key in airports) {
+        if (airports.hasOwnProperty(key)) {
+          const airport = airports[key];
+          const { name, iataCode } = airport;
+          airportList.push({ name, iataCode });
+        }
+      }
+
+      // console.log(airportList);
+      setSuggestions(airportList);
     } catch (error) {
       // Handle any errors that occur during the API call
       console.error('Error fetching API data:', error);
     }
-  }, 1000);
+  }, 600);
   const memoizedSearchArray = useMemo(
     () => [
       passengerInfoState,

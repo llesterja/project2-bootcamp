@@ -7,6 +7,7 @@ import {
   Button,
 } from '@material-ui/core';
 import searchContext from '../../utils/SearchContext';
+import dropDownContext from '../../utils/dropDownContext';
 import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 
 const theme = createTheme({
@@ -29,11 +30,9 @@ const theme = createTheme({
 
 function NestedForm() {
   const [passengerInfoState, setPassengerInfoState] = useContext(searchContext);
-
+  const [handleSubmit] = useContext(dropDownContext);
   const updateSelectedOption = (event) => {
     const newOption = event.target.value;
-
-    console.log(newOption);
 
     setPassengerInfoState((prevState) => ({
       ...prevState,
@@ -176,8 +175,7 @@ function NestedForm() {
             variant="contained"
             color="primary"
             className="accordion-search"
-
-            // onClick={handleSubmit}
+            onClick={handleSubmit}
           >
             Search
           </Button>

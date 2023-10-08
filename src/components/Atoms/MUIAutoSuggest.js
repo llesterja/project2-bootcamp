@@ -18,25 +18,22 @@ export default function AirportAutoSuggest() {
     setDestinationQuery,
   ] = useContext(autoSuggestContext);
 
-  const handleDepartureInputChange = (e) => {
+  useEffect(() => {
+    console.log('departureSuggestions:', departureSuggestions);
+    console.log('destinationSuggestions:', destinationSuggestions);
+  }, [departureSuggestions, destinationSuggestions]);
+
+  const handleInputChange = (e, setSuggestionsArray, setQuery) => {
     const inputValue = e.target.value;
-
-    const selectedSuggestion = departureSuggestions.find(
-      (suggestion) => suggestion.name === inputValue
-    );
-
-    if (selectedSuggestion) {
-      console.log(selectedSuggestion);
-      handleSearch(inputValue, setDepartureSuggestions);
-    } else {
-      setDepartureQuery(''); // Reset departureQuery if no suggestion is selected
-      handleSearch(inputValue, setDepartureSuggestions);
-    }
+    handleSearch(inputValue, setSuggestionsArray);
+    setQuery('');
   };
 
-  const handleDestinationInputChange = (e) => {
-    const inputValue = e.target.value;
-    // Handle destination search here if needed
+  const handleSelect = (event, value, suggestionsArray, setQuery) => {
+    // Do something with the selected value
+    const selectedObject = suggestionsArray.find((obj) => obj.name === value);
+    const IATACode = selectedObject?.iataCode;
+    setQuery(IATACode);
   };
 
   return (
@@ -45,10 +42,19 @@ export default function AirportAutoSuggest() {
         <Autocomplete
           id="departure-auto-complete"
           freeSolo
-          onInputChange={handleDepartureInputChange} // Call handleDepartureInputChange when input value changes
+          filterOptions={(options, state) => options}
+          onInputChange={(e) => {
+            handleInputChange(e, setDepartureSuggestions, setDepartureQuery);
+          }}
+          onChange={(e, value) => {
+            handleSelect(e, value, departureSuggestions, setDepartureQuery);
+          }}
           options={departureSuggestions.map((option) => option.name)}
           renderInput={(params) => (
-            <TextField {...params} label="airport, city or country" />
+            <TextField
+              {...params}
+              label=" departure airport, city or country"
+            />
           )}
         />
       </Stack>
@@ -56,10 +62,23 @@ export default function AirportAutoSuggest() {
         <Autocomplete
           id="arrival-auto-complete"
           freeSolo
-          onInputChange={handleDestinationInputChange} // Call handleDestinationInputChange when input value changes
+          filterOptions={(options, state) => options}
+          onInputChange={(e) => {
+            handleInputChange(
+              e,
+              setDestinationSuggestions,
+              setDestinationQuery
+            );
+          }}
+          onChange={(e, value) => {
+            handleSelect(e, value, destinationSuggestions, setDestinationQuery);
+          }}
           options={destinationSuggestions.map((option) => option.name)}
           renderInput={(params) => (
-            <TextField {...params} label="airport, city or country" />
+            <TextField
+              {...params}
+              label=" destination airport, city or country"
+            />
           )}
         />
       </Stack>
