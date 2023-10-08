@@ -3,7 +3,7 @@ import SearchBarWrapper from './components/Organisms/SearchBarWrapper';
 import './CSS/App.css';
 import getData from './utils/UseAuthAmadeus';
 import FlightTable from './components/FlightsTable';
-import DestinationCard from "./components/DestinationCard";
+import DestinationCard from "./components/DestinationCard/DestinationCard";
 import DestinationGallery from "./components/DestinationGallery"
 
 import FlightOfferContainer from './components/Organisms/FlightOffersContainer';

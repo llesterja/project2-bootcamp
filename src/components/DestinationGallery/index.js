@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import axios from 'axios';
-import DestinationCard from '../DestinationCard';
+import DestinationCard from '../DestinationCard/DestinationCard';
 import getAmadeusToken from '../../api/UseAmadeus';
 
 const DestinationGallery = () => {
