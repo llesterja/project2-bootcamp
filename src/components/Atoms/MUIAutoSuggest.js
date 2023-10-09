@@ -53,7 +53,8 @@ export default function AirportAutoSuggest() {
           renderInput={(params) => (
             <TextField
               {...params}
-              label=" departure airport, city or country"
+              label=" From"
+              placeholder="Country,city or airport"
             />
           )}
         />
@@ -77,7 +78,8 @@ export default function AirportAutoSuggest() {
           renderInput={(params) => (
             <TextField
               {...params}
-              label=" destination airport, city or country"
+              label=" To"
+              placeholder="Country,city or airport"
             />
           )}
         />

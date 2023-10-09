@@ -49,8 +49,6 @@
   border-radius: 8px;
   color: black;
   box-sizing: border-box;
-  top: 19%;
-  left: 41%;
 }
 
 .cabin-label {
@@ -128,8 +126,6 @@
   background-color: white;
   color: black;
   width: max-content;
-  /* padding: 1.7rem; */
-
   list-style: none;
 }
 
@@ -154,6 +150,10 @@
   top: 10.7rem;
   left: 15.2%;
 }
+.DateRangePicker {
+  width: 18rem;
+}
+
 .DateRangePickerInput {
   height: 4.7rem;
 }
@@ -180,4 +180,158 @@
 
 .accordian-container button {
   height: 3.2rem;
+}
+
+@media only screen and (min-width: 600px) {
+  .mui-auto-suggest {
+    width: 50%;
+  }
+  .search-wrapper {
+    padding: 2rem 1rem 2rem 0;
+    width: 35rem;
+  }
+  .searchbar-heading {
+    font-size: 1.5rem;
+    width: 100%;
+    text-align: center;
+    min-width: max-content;
+  }
+  .searchbar form {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .searchbar form > * {
+    width: 100%;
+  }
+
+  .DateRangePicker {
+    width: 100%;
+  }
+  .DateRangePickerInput {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .DateRangePicker_picker_1 {
+    left: 10rem !important;
+  }
+  .DateInput_fang {
+    display: none;
+  }
+  .DateInput_input__focused {
+    border-bottom: 8px solid #008489;
+  }
+  .toggle-menu button {
+    width: 100%;
+  }
+  .accordian-container {
+    top: 40%;
+    left: 17%;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .mui-auto-suggest {
+    width: 50%;
+  }
+  .search-wrapper {
+    padding: 2rem 1rem 2rem 0;
+  }
+  .searchbar form {
+    flex-direction: column;
+  }
+  .searchbar form > * {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .DateRangePicker {
+    width: 100%;
+  }
+  .DateRangePickerInput {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .DateRangePicker_picker_1 {
+    left: 10rem !important;
+  }
+  .DateInput_fang {
+    display: none;
+  }
+  .DateInput_input__focused {
+    border-bottom: 8px solid #008489;
+  }
+  .toggle-menu button {
+    width: 100%;
+  }
+  .accordian-container {
+    top: 40%;
+    left: 17%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .mui-auto-suggest {
+    height: 4.7rem;
+  }
+  .search-wrapper {
+    width: fit-content;
+  }
+
+  .searchbar-heading {
+    width: 100%;
+    text-align: center;
+  }
+  .searchbar form {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-item5 {
+    grid-column: span 2;
+  }
+
+  .DateRangePicker_picker_1 {
+    left: initial !important;
+  }
+  .DateInput_fang {
+    display: initial;
+  }
+  .DateInput_input__focused {
+    border-bottom: 2px solid #008489;
+  }
+  .accordian-container {
+    top: 22%;
+    left: 58%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .DateRangePicker {
+    width: 18rem;
+  }
+  .mui-auto-suggest {
+    width: 11rem !important;
+  }
+  .search-wrapper {
+    padding: 2rem;
+  }
+  .searchbar form {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .mui-auto-suggest {
+    width: 18rem !important;
+  }
 }

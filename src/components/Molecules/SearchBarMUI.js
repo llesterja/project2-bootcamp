@@ -41,23 +41,27 @@ const SearchBar = () => {
       </h1>
 
       <form>
-        <AirportAutoSuggest />
+        <AirportAutoSuggest className="grid-item1" />
 
-        <DatePicker className="calendar-input" />
+        <DatePicker className="calendar-input grid-item2" />
         <dropDownContext.Provider value={[handleSubmit]}>
-          <ModelContainer />
+          <ModelContainer className="grid-item3" />
         </dropDownContext.Provider>
 
         <Button
           variant="contained"
-          className="searchbar-btn"
+          className="searchbar-btn grid-item4"
           color="primary"
           onClick={handleSubmit}
         >
           Search
         </Button>
 
-        <Button variant="contained" type="submit" className="searchbar-btn">
+        <Button
+          variant="contained"
+          type="submit"
+          className="searchbar-btn grid-item5"
+        >
           Surprise Me
         </Button>
       </form>
