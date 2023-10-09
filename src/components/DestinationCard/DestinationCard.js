@@ -8,9 +8,13 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import getAmadeusToken from '../../api/UseAmadeus';
 
-const DestinationCard=()=>{
+const DestinationCard=(props)=>{
   console.log('this is a card that displays a picture of the destination country, details of the flight, price of the flight, dates travelling if applicable')
-  const [cityObject,setCityObject] = useState(null);
+  const {cityObject,currency} = props;
+  const [cityName,setCityName]=useState(null);
+  const [cityImg,setCityImg] = useState(null);
+  // const [checkCityObj,setCheckCityObj]=useState(false);
+  const [checkCityName,setCheckCityName]=useState(false);
 
   const surpriseSearch = async () => {
     const tokenData = await getAmadeusToken();
@@ -25,51 +29,54 @@ const DestinationCard=()=>{
         }
       );
       console.log(amadeusFlightSurprise.data)
-      setCityObject(amadeusFlightSurprise.data);
+      // setCityObject(amadeusFlightSurprise.data);
+      // setCheckCityObj(true);
     } catch (err){
       console.log(err);
     };
   };
 
-  const getCity = async() => {
+  const getCity = async(IATA) => {
     const tokenData = await getAmadeusToken();
-    const IATA = "MUC";
     try{
     const IATAtoCity = await axios.get(
-      ` https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT&keyword=${IATA}/&view=LIGHT`,
+      `https://api.api-ninjas.com/v1/airports?iata=${IATA}`,
       {
         headers: {
-          Authorization: `Bearer ${tokenData.access_token}`,
-        },
+          'X-API-Key': '76neFOhHiRLqsXXZNumRxA==R2ZfjE2Lv6qU38Aq'
+        }
       }
-
     );
-    console.log(IATAtoCity.data)
-    return IATAtoCity.data.data[0].address.cityName;    
+    console.log(IATAtoCity.data[0].city)
+    setCityName(IATAtoCity.data[0].city);
+    setCheckCityName(true)    
     } catch(err){
       console.log(err);
     };
   }
 
 
-  const getCityPhoto = async() => {
+  const getCityPhoto = async(city) => {
     const accessKey = process.env.UNSPLASH_ACCESS_KEY;
     const apiUrl = 'https://api.unsplash.com';
-    const response = await axios.get(`${apiUrl}/photos/random`
+    const response = await axios.get(`${apiUrl}/search/photos?query=${city}`
     , {
       headers: {
         Authorization: `Client-ID fk_07-rYAHvwuDPwqYFpDE4I0FECpU7m7YLoPaA0ArY`,
     },
   });
-  console.log(response.data.urls) ;
-  }
+  setCityImg(response.data.results[0].urls.full) ;
+  };
 
   useEffect(()=>{
-    surpriseSearch();
+    
   },[]);
-
-
-  console.log("cityObject",cityObject)
+  useEffect(()=>{
+    getCity(cityObject.destination)
+  },[]);
+  useEffect(()=>{
+    checkCityName?getCityPhoto(cityName):console.log("Loading")
+  },[cityName]);
 
   return(
     // there is 2 variation of this, one with search inputs and 1 with database inputs
@@ -82,18 +89,18 @@ const DestinationCard=()=>{
         component="img"
         alt="city image"
         height="140"
-        image="https://npr.brightspotcdn.com/dims4/default/aa612b7/2147483647/strip/true/crop/910x525+0+0/resize/1760x1016!/format/webp/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2Flegacy%2Fsites%2Fwusf%2Ffiles%2F201907%2Finvasive_iguanas_7-5.png"
+        image={cityImg}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {cityObject?cityObject.data[0].destination:"Loading"}
+          {cityName?cityName:"Loading"}
         </Typography>
         <Typography variant="body2" color="text.secondary">
 
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">{cityObject?(cityObject.data[0].price.total+" "+cityObject.meta.currency):"Loading"}</Button>
+        <Button size="small">{cityObject?(cityObject.price.total+" "+currency):"Loading"}</Button>
         <Button size="small">Add to Dashboard</Button>
       </CardActions>
     </Card>
