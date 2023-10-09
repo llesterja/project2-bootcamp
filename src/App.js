@@ -7,14 +7,18 @@ import dateRangeContext from './utils/dateRangeContext';
 import autoSuggestContext from './utils/autoSuggestContext';
 import axios from 'axios';
 import FlightOfferContainer from './components/Organisms/FlightOffersContainer';
+import LoadingFullPageModal from './components/Atoms/MUIloadingAnimation';
+import FlightOfferContext from './utils/FlightOfferContext';
 
 const App = () => {
   const [flights, setFlights] = useState([]);
-  const [dictionaries, setDictionaries] = useState([]);
+  const [dictionaries, setDictionaries] = useState();
   const [dateRange, setDateRange] = useState({
     startDate: null,
     endDate: null,
   });
+
+  const [loading, setLoading] = useState(false);
   const [passengerInfoState, setPassengerInfoState] = useState({
     selectedOption: 'First Class',
     adultCounterValue: 0,
@@ -25,6 +29,11 @@ const App = () => {
   const [destinationQuery, setDestinationQuery] = useState('');
   const [departureSuggestions, setDepartureSuggestions] = useState([]);
   const [destinationSuggestions, setDestinationSuggestions] = useState([]);
+
+  useEffect(() => {
+    console.log('flightOffers are:', flights);
+    console.log('dictionaries are:', dictionaries);
+  }, [flights, dictionaries]);
 
   const debounceTimeoutRef = useRef(null);
 
@@ -84,12 +93,18 @@ const App = () => {
       setPassengerInfoState,
       departureQuery,
       destinationQuery,
+      setFlights,
+      setDictionaries,
+      setLoading,
     ],
     [
       passengerInfoState,
       setPassengerInfoState,
       departureQuery,
       destinationQuery,
+      setFlights,
+      setDictionaries,
+      setLoading,
     ]
   );
 
@@ -129,9 +144,12 @@ const App = () => {
           <autoSuggestContext.Provider value={memoizedAutoSuggestArray}>
             <SearchBarWrapper />
           </autoSuggestContext.Provider>
-          <FlightOfferContainer />
+          <FlightOfferContext.Provider value={{ flights, dictionaries }}>
+            <FlightOfferContainer />
+          </FlightOfferContext.Provider>
         </dateRangeContext.Provider>
       </searchContext.Provider>
+      {loading && <LoadingFullPageModal />}
     </div>
   );
 };

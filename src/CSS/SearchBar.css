@@ -32,11 +32,6 @@
 .DateInput_input {
   padding: 0.5rem;
 }
-.searchbar-heading {
-  margin-left: 1rem;
-  width: max-content;
-  min-width: 626.3px;
-}
 
 .accordian-container {
   position: absolute;
@@ -170,7 +165,6 @@
 }
 .DateInput_input_1 {
   position: relative;
-  top: 0.3rem;
   height: 4.29rem;
 }
 .destination-arrival-wrapper {
@@ -226,6 +220,9 @@
   .toggle-menu button {
     width: 100%;
   }
+  .counter button {
+    width: fit-content;
+  }
   .accordian-container {
     top: 40%;
     left: 17%;
@@ -267,8 +264,9 @@
   .DateInput_input__focused {
     border-bottom: 8px solid #008489;
   }
-  .toggle-menu button {
-    width: 100%;
+
+  .counter button {
+    width: fit-content;
   }
   .accordian-container {
     top: 40%;
@@ -313,6 +311,11 @@
   }
 }
 
+.MuiGrid-grid-xs-1,
+.MuiGrid-grid-xs-3 {
+  max-width: none !important;
+}
+
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
   .DateRangePicker {
@@ -327,6 +330,12 @@
   .searchbar form {
     display: flex;
     flex-direction: row;
+  }
+  .searchbar-heading {
+    margin-left: 1rem;
+    width: max-content;
+    min-width: 626.3px;
+    text-align: left;
   }
 }
 

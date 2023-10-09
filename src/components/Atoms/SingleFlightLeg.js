@@ -1,7 +1,8 @@
 import React from 'react';
 import LineSVG from './LineSVG';
 
-const ReturnFlightsInfo = () => {
+const FlightLeg = ({ flightOffer }) => {
+  console.log('flightleg is returning:', flightOffer);
   return (
     <div className="return-info">
       <div className="logo-container">
@@ -24,4 +25,4 @@ const ReturnFlightsInfo = () => {
   );
 };
 
-export default ReturnFlightsInfo;
+export default FlightLeg;

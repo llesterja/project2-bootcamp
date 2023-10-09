@@ -9,6 +9,7 @@ export default function withClickOutside(WrappedComponent) {
     useEffect(() => {
       const handleClickOutside = (event) => {
         if (
+          ref.current &&
           !ref.current.contains(event.target) &&
           !event.target.classList.contains('MuiSelect-root') &&
           !event.target.classList.contains('MuiListItem-button')
@@ -17,7 +18,10 @@ export default function withClickOutside(WrappedComponent) {
         }
       };
       document.addEventListener('mousedown', handleClickOutside);
-    }, [ref]);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, []);
 
     return <WrappedComponent open={open} setOpen={setOpen} ref={ref} />;
   };

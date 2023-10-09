@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import DatePicker from './CalendarComponent';
 import '../../CSS/App.css';
 import '../../CSS/SearchBar.css';
@@ -9,7 +9,6 @@ import getFlightOffers from '../../utils/useFlightOffersApi';
 import AirportAutoSuggest from '../Atoms/MUIAutoSuggest';
 import dateRangeContext from '../../utils/dateRangeContext';
 import dropDownContext from '../../utils/dropDownContext';
-import { DropdownContext } from '@mui/base';
 
 const SearchBar = () => {
   const [
@@ -17,21 +16,39 @@ const SearchBar = () => {
     setPassengerInfoState,
     departureQuery,
     destinationQuery,
+    setFlights,
+    setDictionaries,
+    setLoading,
   ] = useContext(searchContext);
   const [dateRange] = useContext(dateRangeContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('The departure query in handleSubmit is:', departureQuery);
-    const offers = await getFlightOffers(
-      departureQuery,
-      destinationQuery,
-      dateRange,
-      passengerInfoState.selectedOption,
-      passengerInfoState.adultCounterValue,
-      passengerInfoState.childCounterValue
-    );
-    console.log(offers);
+    setLoading(true);
+
+    try {
+      const offers = await getFlightOffers(
+        departureQuery,
+        destinationQuery,
+        dateRange,
+        passengerInfoState.selectedOption,
+        passengerInfoState.adultCounterValue,
+        passengerInfoState.childCounterValue
+      );
+      const { data: flightOffers } = offers;
+      const { dictionaries } = offers;
+
+      await Promise.all([
+        setFlights([...flightOffers]),
+        setDictionaries(dictionaries),
+      ]);
+
+      setLoading(false);
+    } catch (error) {
+      // Handle the error here
+      setLoading(false);
+      console.error('Error:', error);
+    }
   };
 
   return (

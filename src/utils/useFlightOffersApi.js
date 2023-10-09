@@ -30,7 +30,7 @@ const getFlightOffers = async (
   const travelClass = travelClassDict[formattedCabinClass];
   console.log(travelClass);
   const flightData = await axios.get(
-    `https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=${departure}&destinationLocationCode=${destination}&departureDate=${formattedDepartureDate}&returnDate=${formattedReturnDate}&adults=${adults}&travelClass=${travelClass}&children=${children}&nonStop=false&max=20`,
+    `https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=${departure}&destinationLocationCode=${destination}&departureDate=${formattedDepartureDate}&returnDate=${formattedReturnDate}&adults=${adults}&travelClass=${travelClass}&children=${children}&nonStop=false&max=100`,
     {
       headers: {
         Authorization: `Bearer ${authToken}`,
