@@ -19,7 +19,7 @@ export default function AirportAutoSuggest() {
   ] = useContext(autoSuggestContext);
 
   useEffect(() => {
-    console.log('departureSuggestions:', departureSuggestions);
+    console.log('departureSuggestion:', departureSuggestions);
     console.log('destinationSuggestions:', destinationSuggestions);
   }, [departureSuggestions, destinationSuggestions]);
 
