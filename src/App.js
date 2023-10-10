@@ -9,6 +9,7 @@ import axios from 'axios';
 import FlightOfferContainer from './components/Organisms/FlightOffersContainer';
 import LoadingFullPageModal from './components/Atoms/MUIloadingAnimation';
 import FlightOfferContext from './utils/FlightOfferContext';
+import HomePage from './components/Pages/HomePage';
 
 const App = () => {
   const [flights, setFlights] = useState([]);
@@ -142,7 +143,7 @@ const App = () => {
       <searchContext.Provider value={memoizedSearchArray}>
         <dateRangeContext.Provider value={memoizedDateArray}>
           <autoSuggestContext.Provider value={memoizedAutoSuggestArray}>
-            <SearchBarWrapper />
+            <HomePage />
           </autoSuggestContext.Provider>
           <FlightOfferContext.Provider value={{ flights, dictionaries }}>
             <FlightOfferContainer />

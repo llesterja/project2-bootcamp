@@ -1,0 +1,12 @@
+/* image 1 */
+
+.banner-image {
+  /* image 1 */
+  position: absolute;
+  width: 1440px;
+  height: 293px;
+  left: 0px;
+  top: 84px;
+
+  background: url('../../public/imgs/home-hero-image.png');
+}
