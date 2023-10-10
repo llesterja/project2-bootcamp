@@ -5,7 +5,9 @@ import getAuth from './utils/UseAuthAmadeus';
 import searchContext from './utils/SearchContext';
 import dateRangeContext from './utils/dateRangeContext';
 import autoSuggestContext from './utils/autoSuggestContext';
-import axios from 'axios';
+import axios from 'axios';import DestinationCard from "./components/DestinationCard/DestinationCard";
+import DestinationGallery from "./components/DestinationGallery"
+
 import FlightOfferContainer from './components/Organisms/FlightOffersContainer';
 import LoadingFullPageModal from './components/Atoms/MUIloadingAnimation';
 import FlightOfferContext from './utils/FlightOfferContext';
@@ -151,6 +153,7 @@ const App = () => {
         </dateRangeContext.Provider>
       </searchContext.Provider>
       {loading && <LoadingFullPageModal />}
+      <DestinationGallery/>
     </div>
   );
 };

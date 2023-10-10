@@ -25,3 +25,6 @@ yarn-error.log*
 
 #env var
 .env
+
+#config file required for eject-cra
+config-overrides.js

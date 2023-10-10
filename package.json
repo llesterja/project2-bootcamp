@@ -16,11 +16,14 @@
     "amadeus": "^9.0.0",
     "axios": "^1.5.1",
     "firebase": "^10.4.0",
+    "axios": "^1.5.1",
+    "firebase": "^10.4.0",
     "moment": "^2.29.4",
     "react": "^18.1.0",
     "react-dates": "^21.8.0",
     "react-dom": "^18.1.0",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "unsplash-js": "^7.0.18"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -42,5 +45,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "customize-cra": "^1.0.0",
+    "react-app-rewired": "^2.2.1"
   }
 }
