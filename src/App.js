@@ -1,17 +1,14 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import SearchBarWrapper from './components/Organisms/SearchBarWrapper';
 import './CSS/App.css';
 import getAuth from './utils/UseAuthAmadeus';
 import searchContext from './utils/SearchContext';
 import dateRangeContext from './utils/dateRangeContext';
 import autoSuggestContext from './utils/autoSuggestContext';
-import axios from 'axios';import DestinationCard from "./components/DestinationCard/DestinationCard";
-import DestinationGallery from "./components/DestinationGallery"
-
+import axios from 'axios';
 import FlightOfferContainer from './components/Organisms/FlightOffersContainer';
 import LoadingFullPageModal from './components/Atoms/MUIloadingAnimation';
 import FlightOfferContext from './utils/FlightOfferContext';
-import HomePage from './components/Pages/HomePage';
+import HomePage from './pages/HomePage/index';
 
 const App = () => {
   const [flights, setFlights] = useState([]);
@@ -83,7 +80,6 @@ const App = () => {
         }
       }
 
-      // console.log(airportList);
       setSuggestions(airportList);
     } catch (error) {
       // Handle any errors that occur during the API call
@@ -140,8 +136,9 @@ const App = () => {
       setDestinationQuery,
     ]
   );
+
   return (
-    <div className="App">
+    <div className="App" style={{ maxHeight: '100vh' }}>
       <searchContext.Provider value={memoizedSearchArray}>
         <dateRangeContext.Provider value={memoizedDateArray}>
           <autoSuggestContext.Provider value={memoizedAutoSuggestArray}>
@@ -153,7 +150,6 @@ const App = () => {
         </dateRangeContext.Provider>
       </searchContext.Provider>
       {loading && <LoadingFullPageModal />}
-      <DestinationGallery/>
     </div>
   );
 };
