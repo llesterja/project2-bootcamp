@@ -8,25 +8,9 @@ import {
 } from '@material-ui/core';
 import searchContext from '../../utils/SearchContext';
 import dropDownContext from '../../utils/dropDownContext';
-import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 
-const theme = createTheme({
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          backgroundColor: '#0062e3',
-          color: 'white',
-          fontSize: '1.5rem',
-          alignSelf: 'center',
-          padding: '1rem 3rem',
-          border: 'none',
-          borderRadius: '6px',
-        },
-      },
-    },
-  },
-});
+
+
 
 function NestedForm() {
   const [passengerInfoState, setPassengerInfoState] = useContext(searchContext);
@@ -168,8 +152,7 @@ function NestedForm() {
           </span>
         </div>
 
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
+
 
           <Button
             variant="contained"
@@ -179,7 +162,7 @@ function NestedForm() {
           >
             Search
           </Button>
-        </ThemeProvider>
+
       </FormControl>
     </div>
   );
