@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import './CSS/App.css';
 import getAuth from './utils/UseAuthAmadeus';
@@ -9,6 +10,32 @@ import FlightOfferContainer from './components/Organisms/FlightOffersContainer';
 import LoadingFullPageModal from './components/Atoms/MUIloadingAnimation';
 import FlightOfferContext from './utils/FlightOfferContext';
 import HomePage from './pages/HomePage/index';
+import Login from './pages/Login/index';
+import Register from './pages/Register/index';
+import FlightDisplayPage from './pages/FlightsDisplayPage/index';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { userDetailsContext } from './utils/userDetailsContext';
+
+const routes = [
+  {
+    path: '/',
+    element: <HomePage />,
+  },
+
+  {
+    path: '/Login',
+    element: <Login />,
+  },
+
+  {
+    path: '/FlightDisplayPage',
+    element: <FlightDisplayPage />,
+  },
+  {
+    path: '/Register',
+    element: <Register />,
+  },
+];
 
 const App = () => {
   const [flights, setFlights] = useState([]);
@@ -17,6 +44,13 @@ const App = () => {
     startDate: null,
     endDate: null,
   });
+
+  const [userDetails, setUserDetails] = useState({
+    email: '',
+    password: '',
+  });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
 
   const [loading, setLoading] = useState(false);
   const [passengerInfoState, setPassengerInfoState] = useState({
@@ -137,19 +171,42 @@ const App = () => {
     ]
   );
 
+  const contextValues = useMemo(
+    () => [
+      userDetails,
+      setUserDetails,
+      isLoggedIn,
+      setIsLoggedIn,
+      currentUser,
+      setCurrentUser,
+    ],
+    [userDetails, setUserDetails, isLoggedIn, currentUser, setCurrentUser]
+  );
+
   return (
     <div className="App" style={{ maxHeight: '100vh' }}>
-      <searchContext.Provider value={memoizedSearchArray}>
-        <dateRangeContext.Provider value={memoizedDateArray}>
-          <autoSuggestContext.Provider value={memoizedAutoSuggestArray}>
-            <HomePage />
-          </autoSuggestContext.Provider>
-          <FlightOfferContext.Provider value={{ flights, dictionaries }}>
-            <FlightOfferContainer />
-          </FlightOfferContext.Provider>
-        </dateRangeContext.Provider>
-      </searchContext.Provider>
-      {loading && <LoadingFullPageModal />}
+      <Router>
+        <userDetailsContext.Provider value={contextValues}>
+          <searchContext.Provider value={memoizedSearchArray}>
+            <dateRangeContext.Provider value={memoizedDateArray}>
+              <autoSuggestContext.Provider value={memoizedAutoSuggestArray}>
+                <Routes>
+                  {routes.map((route) => (
+                    <Route
+                      key={route.path}
+                      path={route.path}
+                      element={route.element}
+                    />
+                  ))}
+                </Routes>
+              </autoSuggestContext.Provider>
+              <FlightOfferContext.Provider value={{ flights, dictionaries }}>
+                <FlightOfferContainer />
+              </FlightOfferContext.Provider>
+            </dateRangeContext.Provider>
+          </searchContext.Provider>
+        </userDetailsContext.Provider>
+      </Router>
     </div>
   );
 };
