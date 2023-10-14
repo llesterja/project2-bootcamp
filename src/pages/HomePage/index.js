@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SearchBarWrapper from '../../components/Organisms/SearchBarWrapper';
-import Navbar from '../../components/Molecules/Navbar';
+import NavbarLogggedIn from '../../components/Molecules/NavbarLoggedIn';
+import NavbarLoggedOut from '../../components/Molecules/NavbarLoggedOut';
+import '../../CSS/home.css';
 
 const HomePage = () => {
+  const [loggedOut, setLoggedOut] = useState(true);
   return (
     <div>
-      <Navbar />
+      {loggedOut ? <NavbarLoggedOut /> : <NavbarLogggedIn />}
       <div className="banner-image"></div>
       <div className="search-container">
         <SearchBarWrapper />

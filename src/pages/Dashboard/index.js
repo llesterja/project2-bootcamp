@@ -1,14 +1,16 @@
 import React from 'react';
-import Navbar from '../../components/Molecules/Navbar';
-import SearchBar from '../../components/Molecules/SearchBarMUI';
-import styles from '../../CSS/SearchBar.css';
+import Navbar from '../../components/Molecules/NavbarLoggedIn';
+import SearchBarWrapper from '../../components/Organisms/SearchBarWrapper';
+import '../../CSS/dashboard.css';
+import ChipForm from '../../components/Organisms/dashBoardform';
 
 const Dashboard = () => {
   return (
-    <>
+    <div>
       <Navbar />
-      <SearchBar className={styles.searchbar} />
-    </>
+      <SearchBarWrapper />
+      <ChipForm />
+    </div>
   );
 };
 

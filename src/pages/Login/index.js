@@ -1,8 +1,8 @@
 import { useContext, useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../CSS/login.css';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 import { signIn, reAuth } from '../../api/authentication';
 import { userDetailsContext } from '../../utils/userDetailsContext';
 import { useNavigate } from 'react-router-dom';
@@ -16,8 +16,6 @@ const Login = () => {
 
   useAuthCheck(reAuth, setIsLoggedIn, setCurrentUser, navigate);
 
-  // Keep this
-
   const signInUser = async () => {
     const user = await signIn(userDetails.email, userDetails.password);
     try {
@@ -30,7 +28,9 @@ const Login = () => {
         navigate('/dashboard');
       }
     } catch (error) {
-        console.log(error);
+      console.log(error);
+
+      console.log(error);
     }
   };
 
@@ -43,45 +43,52 @@ const Login = () => {
 
   return (
     <div className="container">
-      <div className="login-container">
-        <h1>RocketGram</h1>
-        <h5>Where rockets are upvotes and crashes are downvotes</h5>
-        <Form className="login">
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
+      <Container maxWidth="sm">
+        <div className="login-container">
+          <Typography variant="h4" component="h1" gutterBottom>
+            Flight Scanner
+          </Typography>
+          <Typography variant="h6" component="h2" gutterBottom>
+            Cheap flights for all
+          </Typography>
+          <form className="login">
+            <TextField
               value={email}
               type="email"
               name="email"
               onChange={(e) => handleChange(e)}
-              placeholder="Enter email"
+              label="Email address"
+              fullWidth
+              margin="normal"
             />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
+            <TextField
               value={password}
               type="password"
               name="password"
               onChange={(e) => handleChange(e)}
-              placeholder="Password"
+              label="Password"
+              fullWidth
+              margin="normal"
             />
-          </Form.Group>
-          <div className="button-container">
-            <Button className="custom-button" onClick={signInUser}>
-              Login
-            </Button>
+            <div className="button-container">
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={signInUser}
+                fullWidth
+              >
+                Login
+              </Button>
+            </div>
+          </form>
+          <div className="new-user">
+            <Typography variant="body1" gutterBottom>
+              Not a member yet? Don't Miss Out!
+            </Typography>
+            <a href="/register">Register here</a>
           </div>
-        </Form>
-        <div className="new-user">
-          <p> Not a member yet? Don't Miss Out! </p>
-          <a href="/register">Register here </a>
         </div>
-      </div>
+      </Container>
     </div>
   );
 };

@@ -14,8 +14,8 @@ import Login from './pages/Login/index';
 import Register from './pages/Register/index';
 import FlightDisplayPage from './pages/FlightsDisplayPage/index';
 import { userDetailsContext } from './utils/userDetailsContext';
-import './CSS/SearchBar.css';
 import Dashboard from './pages/Dashboard';
+import './CSS/SearchBar.css';
 import SurpriseMePage from './pages/SupriseMe';
 
 const routes = [

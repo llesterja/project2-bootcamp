@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import DatePicker from './CalendarComponent';
 import '../../CSS/App.css';
-import '../../CSS/SearchBar.css';
 import ModelContainer from '../Organisms/ModelContainer';
 import { Button } from '@material-ui/core';
 import searchContext from '../../utils/SearchContext';
@@ -10,8 +9,7 @@ import AirportAutoSuggest from '../Atoms/MUIAutoSuggest';
 import dateRangeContext from '../../utils/dateRangeContext';
 import dropDownContext from '../../utils/dropDownContext';
 import '../../CSS/SearchBar.css';
-import {useNavigate} from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 
 const SearchBar = () => {
   const navigate = useNavigate();
@@ -57,9 +55,8 @@ const SearchBar = () => {
 
   const HandleSurprise = (e) => {
     e.preventDefault();
-    navigate("/SurpriseMe");    
-  }
-
+    navigate('/SurpriseMe');
+  };
 
   return (
     <div className="searchbar">
@@ -88,7 +85,9 @@ const SearchBar = () => {
           variant="contained"
           type="submit"
           className="searchbar-btn grid-item5"
-          onClick={(e)=>{HandleSurprise(e)}}
+          onClick={(e) => {
+            HandleSurprise(e);
+          }}
         >
           Surprise Me
         </Button>
