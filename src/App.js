@@ -15,6 +15,7 @@ import Register from './pages/Register/index';
 import FlightDisplayPage from './pages/FlightsDisplayPage/index';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { userDetailsContext } from './utils/userDetailsContext';
+import SurpriseMePage from './pages/SupriseMe';
 
 const routes = [
   {
@@ -34,6 +35,10 @@ const routes = [
   {
     path: '/Register',
     element: <Register />,
+  },
+  {
+    path: '/SurpriseMe',
+    element: <SurpriseMePage />,
   },
 ];
 

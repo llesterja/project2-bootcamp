@@ -9,8 +9,11 @@ import getFlightOffers from '../../utils/useFlightOffersApi';
 import AirportAutoSuggest from '../Atoms/MUIAutoSuggest';
 import dateRangeContext from '../../utils/dateRangeContext';
 import dropDownContext from '../../utils/dropDownContext';
+import {useNavigate} from 'react-router-dom';
+
 
 const SearchBar = () => {
+  const navigate = useNavigate();
   const [
     passengerInfoState,
     setPassengerInfoState,
@@ -51,6 +54,12 @@ const SearchBar = () => {
     }
   };
 
+  const HandleSurprise = (e) => {
+    e.preventDefault();
+    navigate("/SurpriseMe");    
+  }
+
+
   return (
     <div className="searchbar">
       <h1 className="searchbar-heading">
@@ -78,6 +87,7 @@ const SearchBar = () => {
           variant="contained"
           type="submit"
           className="searchbar-btn grid-item5"
+          onClick={(e)=>{HandleSurprise(e)}}
         >
           Surprise Me
         </Button>

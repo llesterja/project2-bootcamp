@@ -27,9 +27,11 @@ const Login = () => {
           email: '',
           password: '',
         });
-        navigate('/feed');
+        navigate('/dashboard');
       }
-    } catch (error) {}
+    } catch (error) {
+        console.log(error);
+    }
   };
 
   const handleChange = (e) => {
