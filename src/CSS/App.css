@@ -21,3 +21,6 @@
   ); /* Optional: semi-transparent background */
   backdrop-filter: blur(8px); /* Adjust the blur radius as needed */
 }
+header {
+  background-color: #05203c !important;
+}

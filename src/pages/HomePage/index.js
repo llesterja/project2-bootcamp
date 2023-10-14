@@ -1,8 +1,6 @@
 import React from 'react';
 import SearchBarWrapper from '../../components/Organisms/SearchBarWrapper';
 import Navbar from '../../components/Molecules/Navbar';
-import '../../CSS/bannerImage.css';
-import '../../CSS/home.css';
 
 const HomePage = () => {
   return (

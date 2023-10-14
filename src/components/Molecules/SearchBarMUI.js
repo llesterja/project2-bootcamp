@@ -9,6 +9,7 @@ import getFlightOffers from '../../utils/useFlightOffersApi';
 import AirportAutoSuggest from '../Atoms/MUIAutoSuggest';
 import dateRangeContext from '../../utils/dateRangeContext';
 import dropDownContext from '../../utils/dropDownContext';
+import '../../CSS/SearchBar.css';
 import {useNavigate} from 'react-router-dom';
 
 

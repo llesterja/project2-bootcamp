@@ -13,8 +13,9 @@ import HomePage from './pages/HomePage/index';
 import Login from './pages/Login/index';
 import Register from './pages/Register/index';
 import FlightDisplayPage from './pages/FlightsDisplayPage/index';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { userDetailsContext } from './utils/userDetailsContext';
+import './CSS/SearchBar.css';
+import Dashboard from './pages/Dashboard';
 import SurpriseMePage from './pages/SupriseMe';
 
 const routes = [
@@ -26,6 +27,11 @@ const routes = [
   {
     path: '/Login',
     element: <Login />,
+  },
+
+  {
+    path: '/Dashboard',
+    element: <Dashboard />,
   },
 
   {
