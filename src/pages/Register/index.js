@@ -34,7 +34,7 @@ const Register = () => {
         password: '',
       });
       setIsLoggedIn(true);
-      navigate('/Feed');
+      navigate('/dashboard');
     } catch (error) {
       console.log(`failed to register user: ${error}`);
     }

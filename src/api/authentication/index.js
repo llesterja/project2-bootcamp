@@ -36,13 +36,11 @@ export const signIn = async (email, password) => {
   }
 };
 
-export const logOut = async () => {
+export const logOut = async (auth) => {
   try {
     await signOut(auth);
   } catch (error) {
-    console.log(
-      `Error at signOut:${Error(error.code)} ${Error(error.message)}`
-    );
+    console.log(`Error at signOut: ${error.code} ${error.message}`);
   }
 };
 

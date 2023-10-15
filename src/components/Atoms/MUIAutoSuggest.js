@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -17,11 +17,6 @@ export default function AirportAutoSuggest() {
     setDepartureQuery,
     setDestinationQuery,
   ] = useContext(autoSuggestContext);
-
-  useEffect(() => {
-    console.log('departureSuggestion:', departureSuggestions);
-    console.log('destinationSuggestions:', destinationSuggestions);
-  }, [departureSuggestions, destinationSuggestions]);
 
   const handleInputChange = (e, setSuggestionsArray, setQuery) => {
     const inputValue = e.target.value;

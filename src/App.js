@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import React, { useState, useRef, useMemo } from 'react';
 import './CSS/App.css';
 import getAuth from './utils/UseAuthAmadeus';
@@ -7,7 +7,6 @@ import dateRangeContext from './utils/dateRangeContext';
 import autoSuggestContext from './utils/autoSuggestContext';
 import axios from 'axios';
 import FlightOfferContainer from './components/Organisms/FlightOffersContainer';
-import LoadingFullPageModal from './components/Atoms/MUIloadingAnimation';
 import FlightOfferContext from './utils/FlightOfferContext';
 import HomePage from './pages/HomePage/index';
 import Login from './pages/Login/index';
@@ -19,6 +18,8 @@ import './CSS/SearchBar.css';
 import SurpriseMePage from './pages/SupriseMe';
 import NavbarLoggedIn from './components/Molecules/NavbarLoggedIn';
 import NavbarLoggedOut from './components/Molecules/NavbarLoggedOut';
+import loggedInContext from './utils/loggedInContext';
+import Profile from './pages/Profile';
 
 const App = () => {
   const [flights, setFlights] = useState([]);
@@ -32,12 +33,20 @@ const App = () => {
     email: '',
     password: '',
   });
+  const [loading, setLoading] = useState(false);
+  const [passengerInfoState, setPassengerInfoState] = useState({
+    selectedOption: 'First Class',
+    adultCounterValue: 0,
+    childCounterValue: 0,
+  });
+  const [departureQuery, setDepartureQuery] = useState('');
+  const [destinationQuery, setDestinationQuery] = useState('');
+  const [departureSuggestions, setDepartureSuggestions] = useState([]);
+  const [destinationSuggestions, setDestinationSuggestions] = useState([]);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-
   const navbarComponent = isLoggedIn ? <NavbarLoggedIn /> : <NavbarLoggedOut />;
-
   const routes = [
     {
       path: '/',
@@ -83,21 +92,19 @@ const App = () => {
         </>
       ),
     },
+
+    {
+      path: '/profile',
+      element: (
+        <>
+          {navbarComponent}
+          <Profile />
+        </>
+      ),
+    },
   ];
 
-  const [loading, setLoading] = useState(false);
-  const [passengerInfoState, setPassengerInfoState] = useState({
-    selectedOption: 'First Class',
-    adultCounterValue: 0,
-    childCounterValue: 0,
-  });
-  const [departureQuery, setDepartureQuery] = useState('');
-  const [destinationQuery, setDestinationQuery] = useState('');
-  const [departureSuggestions, setDepartureSuggestions] = useState([]);
-  const [destinationSuggestions, setDestinationSuggestions] = useState([]);
-
   const debounceTimeoutRef = useRef(null);
-
   const debounce = (func, delay) => {
     return function (...args) {
       clearTimeout(debounceTimeoutRef.current);
@@ -211,28 +218,35 @@ const App = () => {
     [userDetails, setUserDetails, isLoggedIn, currentUser, setCurrentUser]
   );
 
+  const memoizedLogIn = useMemo(
+    () => [isLoggedIn, setIsLoggedIn],
+    [isLoggedIn, setIsLoggedIn]
+  );
+
   return (
     <div className="App" style={{ maxHeight: '100vh' }}>
-      <userDetailsContext.Provider value={contextValues}>
-        <searchContext.Provider value={memoizedSearchArray}>
-          <dateRangeContext.Provider value={memoizedDateArray}>
-            <autoSuggestContext.Provider value={memoizedAutoSuggestArray}>
-              <Routes>
-                {routes.map((route) => (
-                  <Route
-                    key={route.path}
-                    path={route.path}
-                    element={route.element}
-                  />
-                ))}
-              </Routes>
-            </autoSuggestContext.Provider>
-            <FlightOfferContext.Provider value={{ flights, dictionaries }}>
-              <FlightOfferContainer />
-            </FlightOfferContext.Provider>
-          </dateRangeContext.Provider>
-        </searchContext.Provider>
-      </userDetailsContext.Provider>
+      <loggedInContext.Provider value={memoizedLogIn}>
+        <userDetailsContext.Provider value={contextValues}>
+          <searchContext.Provider value={memoizedSearchArray}>
+            <dateRangeContext.Provider value={memoizedDateArray}>
+              <autoSuggestContext.Provider value={memoizedAutoSuggestArray}>
+                <Routes>
+                  {routes.map((route) => (
+                    <Route
+                      key={route.path}
+                      path={route.path}
+                      element={route.element}
+                    />
+                  ))}
+                </Routes>
+              </autoSuggestContext.Provider>
+              <FlightOfferContext.Provider value={{ flights, dictionaries }}>
+                <FlightOfferContainer />
+              </FlightOfferContext.Provider>
+            </dateRangeContext.Provider>
+          </searchContext.Provider>
+        </userDetailsContext.Provider>
+      </loggedInContext.Provider>
     </div>
   );
 };

@@ -13,7 +13,7 @@ export const useAuthCheck = (
         console.log(authedUser);
         setCurrentUser(email);
         setIsLoggedIn(true);
-        navigate('/feed');
+        navigate('/dashboard');
       } else {
         // User is signed out
         return null;

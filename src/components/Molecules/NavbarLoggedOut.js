@@ -27,9 +27,9 @@ function Navbar() {
               flexGrow: 1,
               display: 'flex',
               alignItems: 'center',
+              fontWeight: '700',
             }}
           >
-            {/* Flex item for pages */}
             <Box
               sx={{
                 display: 'flex',
@@ -37,8 +37,22 @@ function Navbar() {
                 gap: '1rem',
               }}
             >
-              <Button color="inherit">Home</Button>
-              <Button color="inherit">Surprise Me</Button>
+              <Button
+                color="inherit"
+                onClick={() => {
+                  navigate('/');
+                }}
+              >
+                Home
+              </Button>
+              <Button
+                color="inherit"
+                onClick={() => {
+                  navigate('/SurpriseMePage');
+                }}
+              >
+                Surprise Me
+              </Button>
             </Box>
           </Box>
 

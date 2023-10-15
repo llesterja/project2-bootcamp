@@ -1,6 +1,6 @@
 // ModelContainer.js
 import React, { forwardRef, useContext } from 'react';
-import withClickOutside from '../withClickOutside';
+import withClickOutside from '../../utils/withClickOutside';
 import NestedForm from '../Molecules/DropDown';
 import searchContext from '../../utils/SearchContext';
 

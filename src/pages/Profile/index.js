@@ -1,10 +1,9 @@
-import React, { useEffect, useContext } from 'react';
-import SearchBarWrapper from '../../components/Organisms/SearchBarWrapper';
-
+import React, { useContext, useEffect } from 'react';
+import ChipForm from '../../components/Organisms/dashBoardform';
 import loggedInContext from '../../utils/loggedInContext';
 import { useNavigate } from 'react-router-dom';
 
-const Dashboard = () => {
+const Profile = () => {
   const [isLoggedIn] = useContext(loggedInContext);
   const navigate = useNavigate();
   useEffect(() => {
@@ -15,9 +14,11 @@ const Dashboard = () => {
 
   return (
     <div>
-      <SearchBarWrapper />
+      <h1>Profile Page</h1>
+
+      <ChipForm />
     </div>
   );
 };
 
-export default Dashboard;
+export default Profile;
