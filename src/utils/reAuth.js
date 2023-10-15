@@ -10,12 +10,10 @@ export const useAuthCheck = (
     const checkIfLoggedIn = (authedUser) => {
       if (authedUser) {
         const { email } = authedUser;
-        console.log(authedUser);
         setCurrentUser(email);
         setIsLoggedIn(true);
         navigate('/dashboard');
       } else {
-        // User is signed out
         return null;
       }
     };

@@ -34,6 +34,7 @@ const App = () => {
     password: '',
   });
   const [loading, setLoading] = useState(false);
+  const [profileImageURL, setProfileImageURL] = useState('');
   const [passengerInfoState, setPassengerInfoState] = useState({
     selectedOption: 'First Class',
     adultCounterValue: 0,
@@ -219,8 +220,8 @@ const App = () => {
   );
 
   const memoizedLogIn = useMemo(
-    () => [isLoggedIn, setIsLoggedIn],
-    [isLoggedIn, setIsLoggedIn]
+    () => [isLoggedIn, setIsLoggedIn, profileImageURL, setProfileImageURL],
+    [isLoggedIn, setIsLoggedIn, profileImageURL, setProfileImageURL]
   );
 
   return (
