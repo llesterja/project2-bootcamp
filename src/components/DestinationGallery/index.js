@@ -4,12 +4,12 @@ import DestinationCard from '../DestinationCard/DestinationCard';
 import getAmadeusToken from '../../api/UseAmadeus';
 import { Grid } from '@mui/material';
 
-const DestinationGallery = () => {
+const DestinationGallery = (props) => {
   const [cityObject,setCityObject] = useState(null);
 
-  const surpriseSearch = async () => {
+  const surpriseSearch = async (origin) => {
     const tokenData = await getAmadeusToken();
-    const origin = "SIN"
+    
     try{
       const amadeusFlightSurprise = await axios.get(
         ` https://test.api.amadeus.com/v1/shopping/flight-destinations?origin=${origin}`,
@@ -26,7 +26,7 @@ const DestinationGallery = () => {
     };
   };
   useEffect(()=>{
-    surpriseSearch();
+    surpriseSearch(props.origin);
   },[]);
 
   return(

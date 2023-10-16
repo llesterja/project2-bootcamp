@@ -57,7 +57,7 @@ const SearchBar = () => {
 
   const HandleSurprise = (e) => {
     e.preventDefault();
-    navigate("/SurpriseMe");    
+    navigate(`/SurpriseMe?origin=${departureQuery}`);    
   }
 
 

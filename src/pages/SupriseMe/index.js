@@ -2,29 +2,21 @@ import React from 'react';
 import DestinationGallery from "../../components/DestinationGallery";
 import SearchBarWrapper from '../../components/Organisms/SearchBarWrapper';
 import Navbar from '../../components/Molecules/Navbar';
+import { useSearchParams } from 'react-router-dom';
 
 
-function SurpriseMe(){
-
-  return(
-    <>
-
-      <div className="search-container">
-        <SearchBarWrapper />
-      </div>
-      <DestinationGallery />
-    </>
-  )
-}
 
 const SurpriseMePage = () => {
+  let [searchParams] = useSearchParams();
+  const origin = searchParams.get('origin')
+  console.log("origin:",origin)
   return(
     <>
       <Navbar />
       <div className="search-container">
         <SearchBarWrapper />
       </div>
-      <DestinationGallery />
+      <DestinationGallery origin ={origin} />
     </>
   )
 };

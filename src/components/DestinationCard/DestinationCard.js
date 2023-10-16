@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import getAmadeusToken from '../../api/UseAmadeus';
 
 const DestinationCard=(props)=>{
-  console.log('this is a card that displays a picture of the destination country, details of the flight, price of the flight, dates travelling if applicable')
+  // console.log('this is a card that displays a picture of the destination country, details of the flight, price of the flight, dates travelling if applicable')
   const {cityObject,currency} = props;
   const [cityName,setCityName]=useState(null);
   const [cityImg,setCityImg] = useState(null);
@@ -43,7 +43,7 @@ const DestinationCard=(props)=>{
       `https://api.api-ninjas.com/v1/airports?iata=${IATA}`,
       {
         headers: {
-          'X-API-Key': '76neFOhHiRLqsXXZNumRxA==R2ZfjE2Lv6qU38Aq'
+          'X-API-Key': "WifvxIo9VN6OftjoVEb0ipwRCSQEY1fMYxJRC11h",
         }
       }
     );
@@ -96,7 +96,7 @@ const DestinationCard=(props)=>{
           {cityName?cityName:"Loading"}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-
+          {cityObject?cityObject.departureDate+" to "+cityObject.returnDate:"Loading"}
         </Typography>
       </CardContent>
       <CardActions>
