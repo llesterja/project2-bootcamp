@@ -11,14 +11,25 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import { useNavigate } from 'react-router-dom';
+import { auth } from '../../firebase';
+import { signOut } from 'firebase/auth';
+import '../../CSS/navbar.css';
 
-const pages = ['Home', 'Surprise Me'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = [
+  ['Home', '/'],
+  ['Surprise Me', '/SurpriseMePage'],
+];
+const settings = [
+  ['Profile', '/profile'],
+  ['Dashboard', '/Dashboard'],
+  ['Logout', 'signOut'],
+];
 
-function Navbar() {
+function NavbarLoggedOut() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -33,6 +44,16 @@ function Navbar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        navigate('/login');
+      })
+      .catch((error) => {
+        console.log('Sign-out error:', error);
+      });
   };
 
   return (
@@ -75,33 +96,28 @@ function Navbar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+          <Box
             sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+              display: { xs: 'none', md: 'flex' },
             }}
           >
-            LOGO
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                key={page[0]}
+                onClick={() => {
+                  // Perform navigation logic here
+                  navigate(page[1]);
+                  handleCloseNavMenu();
+                }}
+                sx={{
+                  my: 2,
+                  color: 'white!important',
+                  display: 'block',
+                  fontWeight: '700!important',
+                }}
               >
-                {page}
+                {page[0]}
               </Button>
             ))}
           </Box>
@@ -129,8 +145,18 @@ function Navbar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem
+                  key={setting}
+                  onClick={() => {
+                    handleCloseUserMenu();
+                    if (setting[1] === 'signOut') {
+                      handleSignOut();
+                    } else {
+                      navigate(setting[1]);
+                    }
+                  }}
+                >
+                  <Typography textAlign="center">{setting[0]}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -140,4 +166,4 @@ function Navbar() {
     </AppBar>
   );
 }
-export default Navbar;
+export default NavbarLoggedOut;

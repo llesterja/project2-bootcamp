@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import React, { useState, useRef, useMemo } from 'react';
 import './CSS/App.css';
 import getAuth from './utils/UseAuthAmadeus';
 import searchContext from './utils/SearchContext';
@@ -7,46 +7,19 @@ import dateRangeContext from './utils/dateRangeContext';
 import autoSuggestContext from './utils/autoSuggestContext';
 import axios from 'axios';
 import FlightOfferContainer from './components/Organisms/FlightOffersContainer';
-import LoadingFullPageModal from './components/Atoms/MUIloadingAnimation';
 import FlightOfferContext from './utils/FlightOfferContext';
 import HomePage from './pages/HomePage/index';
 import Login from './pages/Login/index';
 import Register from './pages/Register/index';
 import FlightDisplayPage from './pages/FlightsDisplayPage/index';
 import { userDetailsContext } from './utils/userDetailsContext';
-import './CSS/SearchBar.css';
 import Dashboard from './pages/Dashboard';
+import './CSS/SearchBar.css';
 import SurpriseMePage from './pages/SupriseMe';
-
-const routes = [
-  {
-    path: '/',
-    element: <HomePage />,
-  },
-
-  {
-    path: '/Login',
-    element: <Login />,
-  },
-
-  {
-    path: '/Dashboard',
-    element: <Dashboard />,
-  },
-
-  {
-    path: '/FlightDisplayPage',
-    element: <FlightDisplayPage />,
-  },
-  {
-    path: '/Register',
-    element: <Register />,
-  },
-  {
-    path: '/SurpriseMe',
-    element: <SurpriseMePage />,
-  },
-];
+import NavbarLoggedIn from './components/Molecules/NavbarLoggedIn';
+import NavbarLoggedOut from './components/Molecules/NavbarLoggedOut';
+import loggedInContext from './utils/loggedInContext';
+import Profile from './pages/Profile';
 
 const App = () => {
   const [flights, setFlights] = useState([]);
@@ -60,28 +33,79 @@ const App = () => {
     email: '',
     password: '',
   });
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
-
   const [loading, setLoading] = useState(false);
+  const [profileImageURL, setProfileImageURL] = useState('');
   const [passengerInfoState, setPassengerInfoState] = useState({
     selectedOption: 'First Class',
     adultCounterValue: 0,
     childCounterValue: 0,
   });
-
   const [departureQuery, setDepartureQuery] = useState('');
   const [destinationQuery, setDestinationQuery] = useState('');
   const [departureSuggestions, setDepartureSuggestions] = useState([]);
   const [destinationSuggestions, setDestinationSuggestions] = useState([]);
 
-  useEffect(() => {
-    console.log('flightOffers are:', flights);
-    console.log('dictionaries are:', dictionaries);
-  }, [flights, dictionaries]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
+  const navbarComponent = isLoggedIn ? <NavbarLoggedIn /> : <NavbarLoggedOut />;
+  const routes = [
+    {
+      path: '/',
+      element: (
+        <>
+          {navbarComponent}
+          <HomePage />
+        </>
+      ),
+    },
+    {
+      path: '/Login',
+      element: <Login />,
+    },
+    {
+      path: '/Dashboard',
+      element: (
+        <>
+          {navbarComponent}
+          <Dashboard />
+        </>
+      ),
+    },
+    {
+      path: '/FlightDisplayPage',
+      element: (
+        <>
+          {navbarComponent}
+          <FlightDisplayPage />
+        </>
+      ),
+    },
+    {
+      path: '/Register',
+      element: <Register />,
+    },
+    {
+      path: '/SurpriseMe',
+      element: (
+        <>
+          {navbarComponent}
+          <SurpriseMePage />
+        </>
+      ),
+    },
+
+    {
+      path: '/profile',
+      element: (
+        <>
+          {navbarComponent}
+          <Profile />
+        </>
+      ),
+    },
+  ];
 
   const debounceTimeoutRef = useRef(null);
-
   const debounce = (func, delay) => {
     return function (...args) {
       clearTimeout(debounceTimeoutRef.current);
@@ -131,6 +155,7 @@ const App = () => {
       console.error('Error fetching API data:', error);
     }
   }, 600);
+
   const memoizedSearchArray = useMemo(
     () => [
       passengerInfoState,
@@ -194,9 +219,14 @@ const App = () => {
     [userDetails, setUserDetails, isLoggedIn, currentUser, setCurrentUser]
   );
 
+  const memoizedLogIn = useMemo(
+    () => [isLoggedIn, setIsLoggedIn, profileImageURL, setProfileImageURL],
+    [isLoggedIn, setIsLoggedIn, profileImageURL, setProfileImageURL]
+  );
+
   return (
     <div className="App" style={{ maxHeight: '100vh' }}>
-      <Router>
+      <loggedInContext.Provider value={memoizedLogIn}>
         <userDetailsContext.Provider value={contextValues}>
           <searchContext.Provider value={memoizedSearchArray}>
             <dateRangeContext.Provider value={memoizedDateArray}>
@@ -217,7 +247,7 @@ const App = () => {
             </dateRangeContext.Provider>
           </searchContext.Provider>
         </userDetailsContext.Provider>
-      </Router>
+      </loggedInContext.Provider>
     </div>
   );
 };

@@ -6,14 +6,13 @@ import { getAuth } from 'firebase/auth';
 
 // TODO: Configure with .env file later
 const firebaseConfig = {
-  apiKey: 'AIzaSyDjt6rchObckdetDOvlV_u6wnetqV02sFM',
+  apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
   projectId: process.env.REACT_APP_PROJECT_ID,
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-  appId: '1:420861331074:web:b83d863d9d15639b2f969b',
-  databaseURL:
-    'https://flighttrackerproj2-default-rtdb.asia-southeast1.firebasedatabase.app',
+  appId: process.env.REACT_APP_APP_ID,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
 };
 
 // Initialize Firebase

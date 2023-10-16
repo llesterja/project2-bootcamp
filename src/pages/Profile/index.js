@@ -1,22 +1,22 @@
-import React, { useEffect, useContext } from 'react';
-import SearchBarWrapper from '../../components/Organisms/SearchBarWrapper';
+import React, { useContext, useEffect } from 'react';
+import ChipForm from '../../components/Organisms/dashBoardform';
 import loggedInContext from '../../utils/loggedInContext';
 import { useNavigate } from 'react-router-dom';
 import useCurrentUser from '../../utils/useCurrentUser';
 import { getProfilePictureURL } from '../../api/manageUserData';
+import '../../CSS/Dashboard.css';
 
-const Dashboard = () => {
-  const [isLoggedIn, , profileImageURL, setProfileImageURL] =
+const Profile = () => {
+  const [isLoggedIn, setIsLoggedIn, profileImageURL, setProfileImageURL] =
     useContext(loggedInContext);
 
-  const navigate = useNavigate();
   const currentUser = useCurrentUser();
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (isLoggedIn === false) {
       navigate('/register');
     }
-  }, [isLoggedIn, navigate]);
+  });
 
   useEffect(() => {
     const fetchProfilePictureURL = async () => {
@@ -34,10 +34,16 @@ const Dashboard = () => {
   }, [currentUser, setProfileImageURL]);
 
   return (
-    <div>
-      <SearchBarWrapper />
+    <div className="profile-container">
+      <h1>Profile Page</h1>
+      <div className="profile">
+        <div class="image-container">
+          <img src={profileImageURL} alt={`profile for ${currentUser?.uid}`} />
+        </div>
+        <ChipForm />
+      </div>
     </div>
   );
 };
 
-export default Dashboard;
+export default Profile;
