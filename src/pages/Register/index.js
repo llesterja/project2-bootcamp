@@ -9,11 +9,13 @@ import { userDetailsContext } from '../../utils/userDetailsContext';
 import { useAuthCheck } from '../../utils/reAuth';
 import '../../CSS/login.css';
 
+
 const Register = () => {
   const [state, setState] = useState({
     email: '',
     userName: '',
     password: '',
+    homeCountry: '',
   });
 
   const [, , , setIsLoggedIn, , setCurrentUser] =
@@ -24,14 +26,15 @@ const Register = () => {
   useAuthCheck(reAuth, setIsLoggedIn, setCurrentUser, navigate);
 
   const registerUser = async () => {
-    const { email, password } = state;
+    const { email, password ,homeCountry} = state;
     try {
-      const user = await register(email, password);
+      const user = await register(email, password, homeCountry);
       console.log({ user });
       setState({
         email: '',
         userName: '',
         password: '',
+        homeCountry: '',
       });
       setIsLoggedIn(true);
       navigate('/dashboard');
@@ -75,6 +78,16 @@ const Register = () => {
               name="password"
               value={state.password}
               label="Password"
+              onChange={(e) => handleChange(e)}
+              fullWidth
+              margin="normal"
+              required
+            />
+            <TextField
+              type="homeCountry"
+              name="homeCountry"
+              value={state.homeCountry}
+              label="Home City"
               onChange={(e) => handleChange(e)}
               fullWidth
               margin="normal"

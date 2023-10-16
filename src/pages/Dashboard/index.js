@@ -32,11 +32,12 @@ const Dashboard = () => {
 
     fetchProfilePictureURL();
   }, [currentUser, setProfileImageURL]);
-
+  console.log("currentUser:",currentUser)
   return (
-    <div>
-      <SearchBarWrapper />
-    </div>
+    <>
+      {currentUser?currentUser.homeCountry:"Loading"}    
+    
+    </>
   );
 };
 

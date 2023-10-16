@@ -3,10 +3,28 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  updateProfile
 } from 'firebase/auth';
 import { auth } from '../../firebase';
+import { getDatabase, ref, set, remove, onValue } from 'firebase/database';
+import useCurrentUser from '../../utils/useCurrentUser';
+  
 
-export const register = async (email, password) => {
+
+const SaveHomeToDatabase = async (currentUser,homeCountry) => {
+  
+  try {
+    const db = getDatabase();
+    const destinationRef = ref(db, `users/${currentUser.uid}/homeCountry`);
+    await set(destinationRef, homeCountry);
+    console.log('Home Country saved to the database.');
+  } catch (error) {
+    console.error('Error saving home country:', error);
+  }
+};
+
+
+export const register = async (email, password, homeCountry) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -14,6 +32,7 @@ export const register = async (email, password) => {
       password
     );
     const user = userCredential.user;
+    await SaveHomeToDatabase(user,homeCountry);
     return user;
   } catch (error) {
     console.log(
