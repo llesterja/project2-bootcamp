@@ -9,7 +9,6 @@ import { userDetailsContext } from '../../utils/userDetailsContext';
 import { useAuthCheck } from '../../utils/reAuth';
 import '../../CSS/login.css';
 
-
 const Register = () => {
   const [state, setState] = useState({
     email: '',
@@ -26,7 +25,7 @@ const Register = () => {
   useAuthCheck(reAuth, setIsLoggedIn, setCurrentUser, navigate);
 
   const registerUser = async () => {
-    const { email, password ,homeCountry} = state;
+    const { email, password, homeCountry } = state;
     try {
       const user = await register(email, password, homeCountry);
       console.log({ user });
@@ -37,7 +36,7 @@ const Register = () => {
         homeCountry: '',
       });
       setIsLoggedIn(true);
-      navigate('/dashboard');
+      navigate('/profile');
     } catch (error) {
       console.log(`failed to register user: ${error}`);
     }

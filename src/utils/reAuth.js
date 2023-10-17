@@ -12,7 +12,7 @@ export const useAuthCheck = (
         const { email } = authedUser;
         setCurrentUser(email);
         setIsLoggedIn(true);
-        navigate('/dashboard');
+        navigate('/profile');
       } else {
         return null;
       }

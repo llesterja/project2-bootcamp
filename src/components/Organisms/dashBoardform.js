@@ -1,17 +1,19 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField, Button, Chip, Grid } from '@mui/material';
 import useCurrentUser from '../../utils/useCurrentUser';
-import { getDatabase,get, child, ref, set, remove, onValue } from 'firebase/database';
+import { getDatabase, get, child, ref, set, onValue } from 'firebase/database';
 import { storage } from '../../firebase';
-import {ref as storageRef,uploadBytes,getDownloadURL} from "firebase/storage";
+import {
+  ref as storageRef,
+  uploadBytes,
+  getDownloadURL,
+} from 'firebase/storage';
 import '../../CSS/Dashboard.css';
 import MUIloadingAnimation from '../Atoms/MUIloadingAnimation';
-import { auth } from '../../firebase';
 
-const ChipForm = () => {
+const ChipForm = ({ setTempProfileImage }) => {
   const useGetDestinations = (currentUser) => {
-  const [destinations, setDestinations] = useState([]);
-
+    const [destinations, setDestinations] = useState([]);
 
     useEffect(() => {
       if (currentUser) {
@@ -33,21 +35,14 @@ const ChipForm = () => {
     return destinations;
   };
 
-
-
   const [inputValue, setInputValue] = useState('');
   const currentUser = useCurrentUser();
   const destinations = useGetDestinations(currentUser);
-  const [homeCountry,setHomeCountry]= useState(null);
-
-
-
-
-
+  const [homeCountry, setHomeCountry] = useState(null);
 
   if (!currentUser) {
     return <MUIloadingAnimation />; // or any other loading state
-  } 
+  }
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
@@ -82,12 +77,22 @@ const ChipForm = () => {
 
   const handleProfilePictureUpload = async (event) => {
     const file = event.target.files[0];
-    console.log(file,':file')
+    console.log(file);
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const fileUrl = e.target.result;
+      setTempProfileImage(fileUrl);
+    };
+    reader.readAsDataURL(file);
+
     if (file) {
       try {
-        const fileRef = storageRef(storage,`profilePictures/${currentUser.uid}`);
-        await uploadBytes(fileRef,file);
-        await getDownloadURL(fileRef,`profilePictures/${currentUser.uid}`);
+        const fileRef = storageRef(
+          storage,
+          `profilePictures/${currentUser.uid}`
+        );
+        await uploadBytes(fileRef, file);
+        await getDownloadURL(fileRef, `profilePictures/${currentUser.uid}`);
       } catch (error) {
         console.error('Error uploading profile picture:', error);
       }
@@ -108,22 +113,22 @@ const ChipForm = () => {
   const getHomeCountry = () => {
     const db = getDatabase();
     const homeCountryRef = ref(db, `users/${currentUser.uid}`);
-      get(child(homeCountryRef, `homeCountry`))
+    get(child(homeCountryRef, `homeCountry`))
       .then((data) => {
         if (data.exists()) {
-          console.log(data.val())
+          console.log(data.val());
           setHomeCountry(data.val());
         }
       })
       .catch((error) => {
         console.error(error);
       });
-    };
-  
+  };
+
   return (
     <div className="chip-form">
-      <Grid container spacing = {2}> 
-      {homeCountry!=null?`I'm from ${homeCountry}!`:"Loading"}
+      <Grid container spacing={2}>
+        {homeCountry != null ? `I'm from ${homeCountry}!` : 'Loading'}
       </Grid>
       <form onSubmit={handleFormSubmit}>
         <Grid container spacing={2} alignItems="center">

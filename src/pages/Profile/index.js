@@ -24,6 +24,7 @@ const Profile = () => {
     useContext(loggedInContext);
   const [homeCountry, setHomeCountry] = useState(null);
   const [homeAirport, setHomeAirport] = useState(null);
+  const [tempProfileImage, setTempProfileImage] = useState(null);
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
   useEffect(() => {
@@ -33,6 +34,21 @@ const Profile = () => {
   });
 
   useEffect(() => {
+    const getHomeCountry = () => {
+      const db = getDatabase();
+      const homeCountryRef = ref(db, `users/${currentUser.uid}`);
+      get(child(homeCountryRef, `homeCountry`))
+        .then((data) => {
+          if (data.exists()) {
+            console.log(data.val());
+            setHomeCountry(data.val());
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+
     const fetchProfilePictureURL = async () => {
       if (currentUser) {
         try {
@@ -48,56 +64,41 @@ const Profile = () => {
     fetchProfilePictureURL();
   }, [currentUser, setProfileImageURL]);
 
-  const getHomeCountry = () => {
-    const db = getDatabase();
-    const homeCountryRef = ref(db, `users/${currentUser.uid}`);
-    get(child(homeCountryRef, `homeCountry`))
-      .then((data) => {
-        if (data.exists()) {
-          console.log(data.val());
-          setHomeCountry(data.val());
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  const getAirport = async (city) => {
-    try {
-      const CitytoIATA = await axios.get(
-        `https://api.api-ninjas.com/v1/airports?city=${city}`,
-        {
-          headers: {
-            'X-API-Key': 'WifvxIo9VN6OftjoVEb0ipwRCSQEY1fMYxJRC11h',
-          },
-        }
-      );
-      console.log('apininja:', CitytoIATA.data);
-      console.log('apininja0:', CitytoIATA.data[0].iata);
-      console.log('apininja1:', CitytoIATA.data[1].iata);
-      console.log('apininja1:', CitytoIATA.data.length);
-
-      for (let i of CitytoIATA.data) {
-        if (i.iata === '') {
-          console.log(i);
-          continue;
-        } else if (i.iata) {
-          setHomeAirport(i.iata);
-        } else {
-          console.log('No IATA found');
-        }
-      }
-      console.log('home IATA:', homeAirport);
-    } catch (err) {
-      console.log(err);
-    }
-  };
   useEffect(() => {
+    const getAirport = async (city) => {
+      try {
+        const CitytoIATA = await axios.get(
+          `https://api.api-ninjas.com/v1/airports?city=${city}`,
+          {
+            headers: {
+              'X-API-Key': 'WifvxIo9VN6OftjoVEb0ipwRCSQEY1fMYxJRC11h',
+            },
+          }
+        );
+        console.log('apininja:', CitytoIATA.data);
+        console.log('apininja0:', CitytoIATA.data[0].iata);
+        console.log('apininja1:', CitytoIATA.data[1].iata);
+        console.log('apininja1:', CitytoIATA.data.length);
+
+        for (let i of CitytoIATA.data) {
+          if (i.iata === '') {
+            console.log(i);
+            continue;
+          } else if (i.iata) {
+            setHomeAirport(i.iata);
+          } else {
+            console.log('No IATA found');
+          }
+        }
+        console.log('home IATA:', homeAirport);
+      } catch (err) {
+        console.log(err);
+      }
+    };
     if (homeCountry) {
       getAirport(homeCountry);
     }
-  }, [homeCountry]);
+  }, [homeCountry, homeAirport]);
 
   if (!homeAirport) {
     return <MUIloadingAnimation />; // or any other loading state
@@ -109,11 +110,13 @@ const Profile = () => {
         <div className="profile">
           <div className="image-container">
             <img
-              src={profileImageURL}
+              src={
+                tempProfileImage !== null ? tempProfileImage : profileImageURL
+              }
               alt={`profile for ${currentUser?.uid}`}
             />
           </div>
-          <ChipForm />
+          <ChipForm setTempProfileImage={setTempProfileImage} />
         </div>
       </div>
       <div>
