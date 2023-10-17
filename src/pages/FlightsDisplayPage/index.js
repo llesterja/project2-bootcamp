@@ -1,9 +1,10 @@
 import React from 'react';
 import '../../CSS/bannerImage.css';
+import SearchBarWrapper from '../../components/Organisms/SearchBarWrapper';
 const FlightsDisplayPage = () => {
   return (
-    <div>
-      <div className="banner-image"></div>
+    <div className="searchbar-container">
+      <SearchBarWrapper />
     </div>
   );
 };

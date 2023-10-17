@@ -165,6 +165,7 @@ const App = () => {
       setFlights,
       setDictionaries,
       setLoading,
+      loading,
     ],
     [
       passengerInfoState,
@@ -174,6 +175,7 @@ const App = () => {
       setFlights,
       setDictionaries,
       setLoading,
+      loading,
     ]
   );
 

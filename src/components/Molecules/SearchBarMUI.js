@@ -10,6 +10,7 @@ import dateRangeContext from '../../utils/dateRangeContext';
 import dropDownContext from '../../utils/dropDownContext';
 import '../../CSS/SearchBar.css';
 import { useNavigate } from 'react-router-dom';
+import MUIloadingAnimation from '../Atoms/MUIloadingAnimation';
 
 const SearchBar = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const SearchBar = () => {
     setFlights,
     setDictionaries,
     setLoading,
+    loading,
   ] = useContext(searchContext);
   const [dateRange] = useContext(dateRangeContext);
 
@@ -46,6 +48,7 @@ const SearchBar = () => {
       ]);
 
       setLoading(false);
+      navigate('/FlightDisplayPage');
     } catch (error) {
       // Handle the error here
       setLoading(false);
@@ -55,12 +58,12 @@ const SearchBar = () => {
 
   const HandleSurprise = (e) => {
     e.preventDefault();
-    navigate(`/SurpriseMe?origin=${departureQuery}`);    
-  }
-
+    navigate(`/SurpriseMe?origin=${departureQuery}`);
+  };
 
   return (
     <div className="searchbar">
+      {loading && <MUIloadingAnimation />}
       <h1 className="searchbar-heading">
         Millions of cheap flights, at your finger tips
       </h1>

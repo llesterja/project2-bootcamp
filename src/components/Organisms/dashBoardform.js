@@ -93,6 +93,7 @@ const ChipForm = ({ setTempProfileImage }) => {
         );
         await uploadBytes(fileRef, file);
         await getDownloadURL(fileRef, `profilePictures/${currentUser.uid}`);
+        event.target.value = '';
       } catch (error) {
         console.error('Error uploading profile picture:', error);
       }

@@ -4,3 +4,8 @@
   width: 100vw;
   height: 30vh;
 }
+
+.searchbar-container {
+  display: flex;
+  justify-content: center;
+}
